@@ -1,0 +1,36 @@
+
+body{
+    margin:0;
+    background-color: #FCFCFF;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 0px 20px;
+}
+
+header img {
+    margin-right: 20px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+nav a {
+    margin: 0;
+    text-decoration: none;
+    color: black;
+    padding: 40px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 20px;
+}
+
+nav a:hover {
+    background-color: #EB5D21;
+    color: white;
+}
