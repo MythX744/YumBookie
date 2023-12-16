@@ -21,11 +21,11 @@ public class User {
     @Column(name="infos")
     private String infos;
 
-    @OneToMany(mappedBy = "theUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Recipe> recipes = new HashSet<>();
-    @OneToMany(mappedBy = "theUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<>();
-    @OneToMany(mappedBy = "theUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Favorite> favorites = new HashSet<>();
 
     public User() {
