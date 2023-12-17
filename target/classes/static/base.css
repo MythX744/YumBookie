@@ -41,16 +41,16 @@ footer {
      text-align: center;
      margin-top: -50px;
 }
-main {
+#mainBase {
     flex: 1;
     padding-bottom: 100px;
 }
-.container {
+.containerBase {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
-#content-wrap {
+#content-wrapBase {
     display: flex;
     flex-direction: column;
     min-height: 100%;
