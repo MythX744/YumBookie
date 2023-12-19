@@ -160,8 +160,8 @@ h2 {
 
 /* Recipe Details Styles */
 .recipe-details-container {
-    padding: 20px 20px; /* Increase padding for larger inner space */
-    width:30%;
+    padding: 20px 10px; /* Increase padding for larger inner space */
+    width:35%;
 }
 
 .recipe-info-table {
@@ -170,7 +170,7 @@ h2 {
 }
 
 .recipe-info-table td {
-    padding: 7px;
+    padding: 2px;
     vertical-align: middle;
 }
 
@@ -210,7 +210,7 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
     height: fit-content; /* Adjust height based on content */
-    width: 70%;
+    width: 65%;
 }
 
 /* Recipe Description Styles */
