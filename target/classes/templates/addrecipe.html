@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add recipe</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload Interface</title>
+  <link rel="stylesheet" th:href="@{addrecipe.css}" />
+  <!-- Add Font Awesome for modern icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <form action="" method="post">
+    <div class="upload-container">
+      <h1>Recipe Submission:</h1>
+      <p style="font-size: 20px;">Let's first start by uploading pictures of your recipe: </p>
+      <p style="font-size: 15px;">**All the fields are obligatory**</p>
+      <div class="file-upload">
+        <div class="upload-instructions">
+          <span class="icon-placeholder"><i class="fa fa-image"></i></span>
+          <p>You can drag files here to add them.</p>
+        </div>
+        <input type="file" id="file-input" multiple onchange="updateFileList()">
+        <label for="file-input" class="file-input-label">Add Files</label>
+      </div>
+      <div class="file-display">
+        <table id="files-table">
+          <tbody>
+          <!-- File rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+      <div id="titlediv" style="text-align: left;">
+        <table class="info-table">
+          <tr>
+            <td>
+              <p id="p1">Now let's add the recipe's name:</p>
+            </td>
+            <td>
+              <input type="text" id="title" name="title" placeholder="Recipe's name">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p id="p1">Choose the recipe category:</p>
+            </td>
+            <td>
+              <select name="filter" id="filter">
+                <option disabled selected value="">Filtering Options</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <!-- Add more filter options as needed -->
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+    <div class="container">
+      <div class="recipe-details-container">
+        <h2>Recipe Details</h2>
+        <table class="recipe-info-table">
+          <tr>
+            <td><i class="fa fa-clock"></i> Preparation:</td>
+            <td><input type="text" placeholder="in mins"></td>
+            <td id="rd">mins</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-fire"></i> Cooking:</td>
+            <td><input type="text" placeholder="in mins"></td>
+            <td id="rd">mins</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-users"></i> Servings:</td>
+            <td><input type="text" placeholder="people"></td>
+            <td id="rd">people</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="description-container">
+        <h2>Recipe description</h2>
+        <textarea placeholder="Enter your description here"></textarea>
+      </div>
+    </div>
+    <div class="container1">
+      <div class="ingredients-container">
+        <h2>Ingredients</h2>
+        <ul id="ingredients-list">
+          <li><input type="text" placeholder="Add an ingredient" onkeypress="handleKeyPress(event, 'ingredients-list')"></li>
+        </ul>
+      </div>
+
+      <!-- Cooking Steps Section -->
+      <div class="cooking-container">
+        <h2>Cooking steps</h2>
+        <ul id="cooking-list">
+          <li><input type="text" placeholder="Add a cooking step" onkeypress="handleKeyPress(event, 'cooking-list')"></li>
+        </ul>
+      </div>
+    </div>
+    <div id="publishbtn2">
+      <button type="submit" id="pbtn">Publish</button>
+    </div>
+  </form>
+</body>
+<script>
+  function handleKeyPress(e, listId) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const list = document.getElementById(listId);
+      const newInput = document.createElement('input');
+      newInput.type = 'text';
+      newInput.placeholder = listId === 'ingredients-list' ? 'Add an ingredient' : 'Add a cooking step';
+      newInput.onkeypress = function(event) { handleKeyPress(event, listId); };
+      const newLi = document.createElement('li');
+      newLi.appendChild(newInput);
+      list.appendChild(newLi);
+      newInput.focus();
+    }
+  }
+</script>
+<script>
+  function updateFileList() {
+    const input = document.getElementById('file-input');
+    const tableBody = document.getElementById('files-table').querySelector('tbody');
+    tableBody.innerHTML = ''; // Clear the table
+
+    // Limit the files to a maximum of 6
+    const files = Array.from(input.files).slice(0, 6);
+    input.files = createFileList(files);
+
+    // Create table rows and cells for files
+    files.forEach((file, index) => {
+      const cellIndex = index % 3;
+      const rowIndex = Math.floor(index / 3);
+      let row = tableBody.rows[rowIndex];
+      if (!row) {
+        row = tableBody.insertRow();
+      }
+
+      const cell = row.insertCell(cellIndex);
+      cell.textContent = file.name;
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.className = 'delete-button';
+      deleteButton.onclick = function() { deleteFile(index); };
+      cell.appendChild(deleteButton);
+    });
+  }
+
+  function deleteFile(index) {
+    const input = document.getElementById('file-input');
+    const files = Array.from(input.files);
+
+    files.splice(index, 1); // Remove the file from the array
+
+    // Update the file list in the file input
+    input.files = createFileList(files);
+
+    // Update the display
+    updateFileList();
+  }
+
+  function createFileList(files) {
+    const dataTransfer = new DataTransfer();
+    files.forEach(file => {
+      dataTransfer.items.add(file);
+    });
+    return dataTransfer.files;
+  }
+
+  // Ensure this is at the bottom of the script.js file to defer its execution
+  document.addEventListener('DOMContentLoaded', updateFileList);
+</script>
+</html>
+
+</body>
+</html>
