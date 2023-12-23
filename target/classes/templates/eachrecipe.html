@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>each recipe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" th:href="@{eachrecipe.css}" />
+</head>
+<body>
+<div class="upload-container">
+    <h1>Recipe TITLE</h1>
+    <p style="font-size: 20px;">Category : VARIABLE </p>
+    <div class="gallery-wrapper">
+        <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
+
+        <div class="horizontal-scroll-container" id="image-scroll-container">
+            <!-- Images will be dynamically inserted here -->
+        </div>
+
+        <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
+    </div>
+
+    <input type="file" id="file-input" multiple accept="image/*" style="display:none;">
+    <label for="file-input">Upload Images</label>
+</div>
+<div class="container">
+    <div class="recipe-details-container">
+        <h2>Recipe Details</h2>
+        <table class="recipe-info-table">
+            <tr>
+                <td><i class="fa fa-clock"></i> Preparation:</td>
+                <td><input type="text" placeholder="in mins"></td>
+                <td id="rd">mins</td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-fire"></i> Cooking:</td>
+                <td><input type="text" placeholder="in mins"></td>
+                <td id="rd">mins</td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-users"></i> Servings:</td>
+                <td><input type="text" placeholder="people"></td>
+                <td id="rd">people</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="description-container">
+        <h2>Recipe description</h2>
+        <textarea placeholder="Enter your description here"></textarea>
+    </div>
+</div>
+<div class="container1">
+    <div class="ingredients-container">
+        <h2>Ingredients</h2>
+        <ul id="ingredients-list">
+            <li><input type="text" placeholder="Ingredient" onkeypress="handleKeyPress(event, 'ingredients-list')"></li>
+        </ul>
+    </div>
+
+    <!-- Cooking Steps Section -->
+    <div class="cooking-container">
+        <h2>Cooking steps</h2>
+        <ul id="cooking-list">
+            <li><input type="text" placeholder="Cooking step" onkeypress="handleKeyPress(event, 'cooking-list')"></li>
+        </ul>
+    </div>
+</div>
+<div id="comments">
+    <h1>Comments:</h1>
+</div>
+</body>
+<script>
+    function handleKeyPress(e, listId) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const list = document.getElementById(listId);
+            const newInput = document.createElement('input');
+            newInput.type = 'text';
+            newInput.placeholder = listId === 'ingredients-list' ? 'Add an ingredient' : 'Add a cooking step';
+            newInput.onkeypress = function(event) { handleKeyPress(event, listId); };
+            const newLi = document.createElement('li');
+            newLi.appendChild(newInput);
+            list.appendChild(newLi);
+            newInput.focus();
+        }
+    }
+</script>
+<script>
+    function updateFileList() {
+        const input = document.getElementById('file-input');
+        const tableBody = document.getElementById('files-table').querySelector('tbody');
+        tableBody.innerHTML = ''; // Clear the table
+
+        // Limit the files to a maximum of 6
+        const files = Array.from(input.files).slice(0, 6);
+        input.files = createFileList(files);
+
+        // Create table rows and cells for files
+        files.forEach((file, index) => {
+            const cellIndex = index % 3;
+            const rowIndex = Math.floor(index / 3);
+            let row = tableBody.rows[rowIndex];
+            if (!row) {
+                row = tableBody.insertRow();
+            }
+
+            const cell = row.insertCell(cellIndex);
+            cell.textContent = file.name;
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-button';
+            deleteButton.onclick = function() { deleteFile(index); };
+            cell.appendChild(deleteButton);
+        });
+    }
+
+    function deleteFile(index) {
+        const input = document.getElementById('file-input');
+        const files = Array.from(input.files);
+
+        files.splice(index, 1); // Remove the file from the array
+
+        // Update the file list in the file input
+        input.files = createFileList(files);
+
+        // Update the display
+        updateFileList();
+    }
+
+    function createFileList(files) {
+        const dataTransfer = new DataTransfer();
+        files.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+        return dataTransfer.files;
+    }
+
+    // Ensure this is at the bottom of the script.js file to defer its execution
+    document.addEventListener('DOMContentLoaded', updateFileList);
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('file-input');
+
+        fileInput.addEventListener('change', function () {
+            updateImageGallery();
+        });
+    });
+
+    function updateImageGallery() {
+        const input = document.getElementById('file-input');
+        const imageContainer = document.getElementById('image-scroll-container');
+        imageContainer.innerHTML = ''; // Clear the container
+
+        const files = Array.from(input.files);
+
+        // Create and append images to the container
+        files.forEach((file) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('gallery-image');
+                imageContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('file-input');
+        const imageContainer = document.getElementById('image-scroll-container');
+
+        fileInput.addEventListener('change', function () {
+            updateImageGallery();
+        });
+
+        document.getElementById('scroll-left').addEventListener('click', function() {
+            imageContainer.scrollBy({ left: -imageContainer.offsetWidth / 2, behavior: 'smooth' });
+        });
+
+        document.getElementById('scroll-right').addEventListener('click', function() {
+            imageContainer.scrollBy({ left: imageContainer.offsetWidth / 2, behavior: 'smooth' });
+        });
+    });
+
+    function updateImageGallery() {
+        const input = document.getElementById('file-input');
+        const imageContainer = document.getElementById('image-scroll-container');
+        imageContainer.innerHTML = ''; // Clear the container
+
+        const files = Array.from(input.files);
+        files.forEach((file) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('gallery-image');
+                imageContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+</script>
+</html>
