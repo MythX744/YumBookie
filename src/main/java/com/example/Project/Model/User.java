@@ -18,8 +18,7 @@ public class User {
     private String email;
     @Column(name="password")
     private String password;
-    @Column(name="infos")
-    private String infos;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Recipe> recipes = new HashSet<>();
@@ -30,12 +29,12 @@ public class User {
 
     public User() {
     }
-    public User(int idUser, String name, String email, String password, String infos) {
+    public User(int idUser, String name, String email, String password) {
         this.idUser = idUser;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.infos = infos;
+
     }
 
     public int getIdUser() {
@@ -70,13 +69,7 @@ public class User {
         this.password = password;
     }
 
-    public String getInfos() {
-        return infos;
-    }
 
-    public void setInfos(String infos) {
-        this.infos = infos;
-    }
 
     @Override
     public String toString() {
@@ -85,7 +78,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", infos='" + infos + '\'' +
                 '}';
     }
 }
