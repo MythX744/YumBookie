@@ -2,87 +2,80 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{base.css}" />
   <link rel="stylesheet" th:href="@{profile.css}" />
-  <title>Title</title>
+  <title>profile</title>
 </head>
 <body>
-<div id="content-wrapBase">
-  <div th:replace="fragments/header :: header" > </div>
-  <main id="mainBase">
-    <div class="page-container">
-      <div class="signup-form" style="width: 25%;">
-        <!-- Sign Up Form Content -->
-        <div class="form-container">
-          <form action="/submit-form" method="post">
-            <div class="profile-picture">
-              <!-- Placeholder for profile picture -->
-            </div>
-            <div id="formulaire">
-              <div class="input-group">
-                <p id="para">FULL NAME</p>
-                <br>
-                <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" name="full_name" placeholder="Full Name">
-              </div>
-              <div class="input-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Email">
-              </div>
-              <div class="input-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Password">
-              </div>
-            </div>
+<div class="page-container">
+  <div class="signup-form" style="width: 25%;">
+    <!-- Sign Up Form Content -->
+    <div class="form-container">
+      <form action="/submit-form" method="post">
+        <div class="profile-picture">
+          <!-- Placeholder for profile picture -->
+        </div>
+        <div id="formulaire">
+          <div class="input-group">
+            <p id="para">FULL NAME</p>
             <br>
-            <button type="submit">CONFIRM</button>
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full_name" placeholder="Full Name">
+          </div>
+          <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email">
+          </div>
+          <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <br>
+        <button type="submit">CONFIRM</button>
+      </form>
+    </div>
+  </div>
+  <div class="recipe-list" style="width: 75%;">
+    <!-- Recipe List Content -->
+    <div class="container">
+      <div class="fixed-header">
+        <h1 style="font-size: 35px;">All Recipies:</h1>
+        <p style=" margin-left: 20px; font-size: 20px">N recipes published</p>
+        <div class="controls">
+          <form action="" method="post">
+            <input type="search" name="search" id="search"
+                   placeholder="Search for a recipe">
+            <select name="filter" id="filter">
+              <option disabled selected value="">Filtering Options</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <!-- Add more filter options as needed -->
+            </select>
+            <button id="searchbtn">Search</button>
           </form>
         </div>
       </div>
-      <div class="recipe-list" style="width: 75%;">
-        <!-- Recipe List Content -->
-        <div class="container">
-          <div class="fixed-header">
-            <h1 style="font-size: 35px;">All Recipies:</h1>
-            <p style=" margin-left: 20px; font-size: 20px">N recipes published</p>
-            <div class="controls">
-              <form action="" method="post">
-                <input type="search" name="search" id="search"
-                       placeholder="Search for a recipe">
-                <select name="filter" id="filter">
-                  <option disabled selected value="">Filtering Options</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <!-- Add more filter options as needed -->
-                </select>
-                <button id="searchbtn">Search</button>
-              </form>
-            </div>
-          </div>
-          <div id="recipe-card-container">
-            <div class="recipe-card">
-              <div class="image-placeholder">img,still div</div>
-              <div class="recipe-info">
-                <h1>Title</h1>
-                <p>Time for preparation:</p>
-                <div class="rating">
-                  <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
-                    <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
-                    <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
-                    <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
-                    <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
-                  </div>
-                </div>
+      <div id="recipe-card-container">
+        <div class="recipe-card">
+          <div class="image-placeholder">img,still div</div>
+          <div class="recipe-info">
+            <h1>Title</h1>
+            <p>Time for preparation:</p>
+            <div class="rating">
+              <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
               </div>
             </div>
-            <!-- Add more recipe cards as needed -->
           </div>
         </div>
+        <!-- Add more recipe cards as needed -->
       </div>
     </div>
-  </main>
-  <div th:replace="fragments/footer :: footer" > </div>
+  </div>
 </div>
 </body>
 </html>
