@@ -3,88 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>YumBookie - Login</title>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
         }
-
-        .container {
+        body {
+            font-family: Arial, sans-serif;
             display: flex;
             height: 100vh;
+            margin: 0;
+            color: #000000;
+            background-color: #FFFFFF;
         }
+        .brand-name {
+            font-size: 2.5rem;
+            color: #EB5D21;
+            margin-bottom: 1rem;
 
-        .login-section, .image-section {
+            text-align: center;
+            height: min-content;
+            margin-bottom: 10%;
+            margin-top: -40px;
+            width: 100%;
+        }
+        .form-section {
+            background-color: #F5F5F5;
             flex: 1;
-        }
-
-        .login-section {
-            background-color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .form-container {
-            width: 300px;
-            margin: auto;
-        }
-
-        .login-form {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: -40px;
+            vertical-align: middle;
         }
-
-        .login-form input[type='text'],
-        .login-form input[type='password'] {
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-        }
-
-        .login-form button {
-            background-color: #f44336;
-            color: white;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            cursor: pointer;
-        }
-
-        .image-section {
-            /*background-image: url('your-image-here.jpg'); */
-            background-size: cover;
-            background-position: center;
-        }
-
-        .login-form button:hover {
-            opacity: 0.9;
-        }
-
-        .login-form p {
+        .form-container {
+            background-color: #FFFFFF;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
             text-align: center;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #808080;
+            border-radius: 4px;
+        }
+        .action-button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            color: #FFFFFF;
+            background-color: #EB5D21;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        .login-btn {
+            text-align: center;
+            padding: 1rem;
+            background-color: #F5B236;
+        }
+        .login-btn a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .image-section {
+            flex: 1;
+            background: url('/images/food.JPG') no-repeat center center;
+            background-size: cover;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="login-section">
-        <div class="form-container">
-            <form class="login-form">
-                <input type="text" placeholder="Username" name="username" required>
-                <input type="password" placeholder="Password" name="password" required>
-                <button type="submit">Login</button>
-                <p>Don't have an account? <a href="#">Sign up</a></p>
-            </form>
+<div class="form-section">
+    <h5 class="brand-name">YumBookie</h5>
+    <div class="form-container">
+        <h2>Login</h2>
+        <div class="input-group">
+            <input type="email" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" name="password" placeholder="Password">
+        </div>
+        <button class="action-button">Login</button>
+        <div class="login-btn">
+            <a href="signup.html">Don't have an account? Sign up</a>
         </div>
     </div>
-    <div class="image-section">
-        <!-- tswira -->
-    </div>
 </div>
-
+<div class="image-section">
+    <!-- Placeholder for an image -->
+</div>
 </body>
 </html>
