@@ -13,7 +13,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipe;
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idUser")
     private User user;
     @Column(name = "title")
     private String title;
@@ -35,11 +35,19 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Set<Favorite> favorites = new HashSet<>();
 
+    @Column(name = "cooking")
+    private int cooking;
+
+    @Column(name = "serving")
+    private int serving;
+
+    @Column(name = "preparation")
+    private int preparation;
 
     public Recipe() {
     }
 
-    public Recipe(int idRecipe, User user, String title, String description, String ingredients, String stepPreparation, ArrayList<String> image, String category) {
+    public Recipe(int idRecipe, User user, String title, String description, String ingredients, String stepPreparation, ArrayList<String> image, String category, Set<Comment> comments, Set<Favorite> favorites, int cooking, int serving, int prepartation) {
         this.idRecipe = idRecipe;
         this.user = user;
         this.title = title;
@@ -48,14 +56,11 @@ public class Recipe {
         this.stepPreparation = stepPreparation;
         this.image = image;
         this.category = category;
-    }
-
-    public int getIdRecipe() {
-        return idRecipe;
-    }
-
-    public void setIdRecipe(int idRecipe) {
-        this.idRecipe = idRecipe;
+        this.comments = comments;
+        this.favorites = favorites;
+        this.cooking = cooking;
+        this.serving = serving;
+        this.preparation = prepartation;
     }
 
     public User getUser() {
@@ -114,17 +119,62 @@ public class Recipe {
         this.category = category;
     }
 
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Set<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
+    }
+
+    public int getCooking() {
+        return cooking;
+    }
+
+    public void setCooking(int cooking) {
+        this.cooking = cooking;
+    }
+
+    public int getServing() {
+        return serving;
+    }
+
+    public void setServing(int serving) {
+        this.serving = serving;
+    }
+
+    public int getPreparation() {
+        return preparation;
+    }
+
+    public void setPreparation(int prepartation) {
+        this.preparation = prepartation;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
                 "idRecipe=" + idRecipe +
-                ", idUser=" + user +
+                ", user=" + user +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", ingredients='" + ingredients + '\'' +
                 ", stepPreparation='" + stepPreparation + '\'' +
                 ", image=" + image +
                 ", category='" + category + '\'' +
+                ", comments=" + comments +
+                ", favorites=" + favorites +
+                ", cooking=" + cooking +
+                ", serving=" + serving +
+                ", prepartation=" + preparation +
                 '}';
     }
 }
