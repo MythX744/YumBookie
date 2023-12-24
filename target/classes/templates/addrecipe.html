@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>add recipe</title>
@@ -18,8 +18,7 @@
 </head>
 
 <body>
-  <form th:action="@{/AddRecipeController/addnewRecipe}" method="post" th:object="${recipe}">
-
+  <form th:action="@{/addrecipe}" th:object="${recipe}" method="post">
     <div class="upload-container">
       <h1>Recipe Submission:</h1>
       <p style="font-size: 20px;">Let's first start by uploading pictures of your recipe: </p>
@@ -29,7 +28,7 @@
           <span class="icon-placeholder"><i class="fa fa-image"></i></span>
           <p>You can drag files here to add them.</p>
         </div>
-        <input th:field="*{image}" type="file" id="file-input" multiple onchange="updateFileList()">
+        <input  type="file" accept="image/*" id="file-input" multiple onchange="updateFileList()">
         <label for="file-input" class="file-input-label">Add Files</label>
       </div>
       <div class="file-display">
@@ -39,7 +38,6 @@
           </tbody>
         </table>
       </div>
-
       <div id="titlediv" style="text-align: left;">
         <table class="info-table">
           <tr>
@@ -57,15 +55,16 @@
             <td>
               <select th:field="*{category}" name="filter" id="filter">
                 <option disabled selected value="">Filtering Options</option>
-                <option value="optionAZ">A-Z</option>
-                <option value="optionZA">Z-A</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Snack">Snack</option>
+                <option value="Dinner">Dinner</option>
                 <!-- Add more filter options as needed -->
               </select>
             </td>
           </tr>
         </table>
       </div>
-
     </div>
     <div class="container">
       <div class="recipe-details-container">
@@ -73,7 +72,7 @@
         <table class="recipe-info-table">
           <tr>
             <td><i class="fa fa-clock"></i> Preparation:</td>
-            <td><input th:field="*{.preparation}" type="text" placeholder="in mins"></td>
+            <td><input th:field="*{preparation}" type="text" placeholder="in mins"></td>
             <td id="rd">mins</td>
           </tr>
           <tr>
@@ -88,7 +87,6 @@
           </tr>
         </table>
       </div>
-
       <div class="description-container">
         <h2>Recipe description</h2>
         <textarea th:field="*{description}" placeholder="Enter your description here"></textarea>
@@ -101,7 +99,6 @@
           <li><input th:field="*{ingredients}" type="text" placeholder="Add an ingredient" onkeypress="handleKeyPress(event, 'ingredients-list')"></li>
         </ul>
       </div>
-
       <!-- Cooking Steps Section -->
       <div class="cooking-container">
         <h2>Cooking steps</h2>
@@ -180,8 +177,6 @@
     });
     return dataTransfer.files;
   }
-
-  // Ensure this is at the bottom of the script.js file to defer its execution
   document.addEventListener('DOMContentLoaded', updateFileList);
 </script>
 </html>

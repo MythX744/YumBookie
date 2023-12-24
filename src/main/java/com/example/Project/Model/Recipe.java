@@ -155,8 +155,8 @@ public class Recipe {
         return preparation;
     }
 
-    public void setPreparation(int prepartation) {
-        this.preparation = prepartation;
+    public void setPreparation(int preparation) {
+        this.preparation = preparation;
     }
 
     @Override
@@ -174,7 +174,7 @@ public class Recipe {
                 ", favorites=" + favorites +
                 ", cooking=" + cooking +
                 ", serving=" + serving +
-                ", prepartation=" + preparation +
+                ", preparation=" + preparation +
                 '}';
     }
 }
