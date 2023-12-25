@@ -10,6 +10,6 @@ public class TestController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("message", "Thymeleaf is working!");
-        return "profile";
+        return "login";
     }
 }

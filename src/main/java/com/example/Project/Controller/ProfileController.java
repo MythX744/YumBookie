@@ -25,7 +25,7 @@ public class ProfileController {
         return "addrecipe";
     }
 
-    @PostMapping("/profile")
+    /*@PostMapping("/profile")
     public String updateUser(@ModelAttribute("user") User user, Model model){
         User existingUser = UserService.findById();
 
@@ -38,6 +38,8 @@ public class ProfileController {
 
         return "profile";
     }
+
+     */
 
 
 }

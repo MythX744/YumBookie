@@ -93,18 +93,13 @@
       </div>
     </div>
     <div class="container1">
-      <div class="ingredients-container">
-        <h2>Ingredients</h2>
-        <ul id="ingredients-list">
-          <li><input th:field="*{ingredients}" type="text" placeholder="Add an ingredient" onkeypress="handleKeyPress(event, 'ingredients-list')"></li>
-        </ul>
+      <div class="description-container1">
+        <h2>Recipe Ingredients</h2>
+        <textarea th:field="*{ingredients}" placeholder="Enter your ingredients here"></textarea>
       </div>
-      <!-- Cooking Steps Section -->
-      <div class="cooking-container">
+      <div class="description-container1">
         <h2>Cooking steps</h2>
-        <ul id="cooking-list">
-          <li><input th:field="*{stepPreparation}" type="text" placeholder="Add a cooking step" onkeypress="handleKeyPress(event, 'cooking-list')"></li>
-        </ul>
+        <textarea th:field="*{stepPreparation}" placeholder="Enter your cooking steps here"></textarea>
       </div>
     </div>
     <div id="publishbtn2">
