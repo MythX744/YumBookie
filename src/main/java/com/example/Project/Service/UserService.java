@@ -20,6 +20,10 @@ public class UserService implements IUserService{
     }
 
     @Override
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
+    @Override
     public User findById(int id) {
         return userDao.findById(id).get();
     }
