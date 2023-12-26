@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{base.css}" />
+  <link rel="stylesheet" th:href="@{main.css}" />
+  <title>Title</title>
+</head>
+<body>
+<div id="content-wrapBase">
+  <div th:replace="fragments/header :: header" > </div>
+  <main id="mainBase">
+    insert code here<br>
+    insert code here<br>
+    insert code here<br>
+    insert code here<br>
+    insert code here<br>
+  </main>
+  <div th:replace="fragments/footer :: footer" > </div>
+</div>
+</body>
+</html>

@@ -13,11 +13,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Upload Interface</title>
   <link rel="stylesheet" th:href="@{addrecipe.css}" />
+  <link rel="stylesheet" th:href="@{base.css}" />
   <!-- Add Font Awesome for modern icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
 <body>
+<div id="content-wrapBase">
+<div th:replace="fragments/header :: header" > </div>
+<main id="mainBase">
   <form th:action="@{/addrecipe}" th:object="${recipe}" method="post">
     <div class="upload-container">
       <h1>Recipe Submission:</h1>
@@ -106,6 +110,9 @@
       <button type="submit" id="pbtn">Publish</button>
     </div>
   </form>
+</main>
+<div th:replace="fragments/footer :: footer" > </div>
+</div>
 </body>
 <script>
   function handleKeyPress(e, listId) {
