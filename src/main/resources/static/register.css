@@ -71,6 +71,10 @@ body {
 }
 .image-section {
     flex: 1;
-    background: url('/static/images/food.JPG') no-repeat center center;
+    background-image: url('/images/food.JPG');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
 }
+
