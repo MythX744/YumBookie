@@ -16,7 +16,7 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
             </div>
-            <button class="action-button" th:text="${buttonText}">Login</button>
+            <button class="action-button" th:text="${buttonText}" id="sub">Login</button>
             <div class="login-btn">
                 <a href="signup.html" th:href="@{/signup}">Don't have an account? Sign up</a>
             </div>
