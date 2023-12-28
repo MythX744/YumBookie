@@ -30,7 +30,7 @@ public class LoginController {
 
         if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
 
-            return "addrecipe";
+            return "main";
         } else {
 
             model.addAttribute("message", "Invalid username or password");

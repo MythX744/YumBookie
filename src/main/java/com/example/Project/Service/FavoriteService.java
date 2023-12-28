@@ -1,11 +1,14 @@
 package com.example.Project.Service;
 
 import com.example.Project.Model.Favorite;
+import com.example.Project.Model.Recipe;
 import com.example.Project.dao.FavoriteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class FavoriteService implements IFavoriteService{
     private FavoriteDao favoriteDao;
@@ -20,7 +23,17 @@ public class FavoriteService implements IFavoriteService{
 
     @Override
     public Favorite findById(int id) {
-        return favoriteDao.findById(id).get();
+        Optional<Favorite> result = favoriteDao.findById(id);
+
+        Favorite favorite = null;
+
+        if (result.isPresent()) {
+            favorite = result.get();
+        }
+        else {
+            throw new RuntimeException("Did not find employee id - " + id);
+        }
+        return favorite;
     }
 
     @Override
