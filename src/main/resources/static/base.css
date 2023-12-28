@@ -1,4 +1,15 @@
 
+@font-face {
+    font-family: 'Sora';
+    src: url('/fonts/Sora-Bold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraBold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraLight.ttf') format('truetype');
+    src: url('/fonts/Sora-Light.ttf') format('truetype');
+    src: url('/fonts/Sora-Medium.ttf') format('truetype');
+    src: url('/fonts/Sora-Regular.ttf') format('truetype');
+    src: url('/fonts/Sora-SemiBold.ttf') format('truetype');
+    src: url('/fonts/Sora-Thin.ttf') format('truetype');
+}
 body{
     margin:0;
     background-color: #FCFCFF;
@@ -10,6 +21,9 @@ header {
      justify-content: space-between;
      background-color: #fff;
      padding: 0px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 }
 
 header img {
@@ -23,6 +37,8 @@ header nav {
 }
 
 header nav a {
+    font-family: "Sora Regular", sans-serif;
+    font-weight: 400;
     margin: 0;
     text-decoration: none;
     color: black;
@@ -42,6 +58,7 @@ footer {
      margin-top: -50px;
 }
 #mainBase {
+    margin-top: 103px;
     flex: 1;
     padding-bottom: 100px;
 }

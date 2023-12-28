@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'Sora';
+    src: url('/fonts/Sora-Bold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraBold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraLight.ttf') format('truetype');
+    src: url('/fonts/Sora-Light.ttf') format('truetype');
+    src: url('/fonts/Sora-Medium.ttf') format('truetype');
+    src: url('/fonts/Sora-Regular.ttf') format('truetype');
+    src: url('/fonts/Sora-SemiBold.ttf') format('truetype');
+    src: url('/fonts/Sora-Thin.ttf') format('truetype');
+}
+
+body {
+    font-family: Sora, sans-serif;
+    background: #FFFFFF;
+}
+
+h1{
+    color: #000;
+    font-family: "Sora ExtraBold", sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+    margin-top: 42px;
+}
+
+.subheader {
+    display: flex;
+    justify-content: space-between;
+    background-color: #EB5D21;
+    padding: 10px;
+}
+
+.search{
+    margin: 8px 0 8px 12px;
+    padding-left: 10px;
+    width: 500px;
+    border-radius: 30px;
+    background: #FCFCFC;
+    flex-shrink: 0;
+    border: 2px solid #FCFCFC;
+}
+
+.search:focus {
+    border-color: #FCA70A;
+    outline: none;
+}
+.search::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+button {
+    width: 214px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background-color: #FCA70A;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    margin: 10px 12px 10px 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-bottom:130px;
+}
+
+.recipe-card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.3s;
+    padding: 10px;
+    cursor: pointer;
+    border: 2px solid rgba(0,0,0,.15);
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px #EB5D21;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #555555;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.favorite-button:hover {
+    transform: scale(1.1);
+}
+
+.recipe-title{
+    font-family: "Sora SemiBold", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #000000;
+    margin: 20px 0px 0px 15px;
+}
+
+.recipe-user {
+    font-family: "Sora Light", sans-serif;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 7px 0px 0px 15px;
+}
+
+.recipe-rating {
+    color: gold;
+    padding: 3px 6px;
+    display: inline-block;
+    margin: 10px 0px 15px 15px;
+    border-radius: 5px;
+    font-size: 0.8em;
+}
+.description-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.description-section .description {
+    width:40%;
+    padding: 80px 60px 60px 60px;
+    background-color: #F7F7F7;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.description-section .description:hover {
+    background-color: #FFF3E0;
+}
+
+.description-section .description h2 {
+    font-family: "Sora SemiBold", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #555;
+    margin: 0px 0px 60px 0px;
+}
+.description-section .description p {
+    font-family: "Sora Regular", sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #555;;
+}
+.description-section img {
+    width: 60%;
+    height: 600px;
+    object-fit: cover;
+    flex: 1;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
