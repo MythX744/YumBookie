@@ -152,6 +152,7 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 70px;
 }
 .description-section .description {
     width:40%;
@@ -189,4 +190,125 @@ button:hover {
     flex: 1;
     box-shadow: 0 8px 12px rgba(0,0,0,0.1);
     border-radius: 4px;
+}
+.AllRecipes-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 70px;
+}
+
+.AllRecipes-header h1 {
+    color: #000;
+    font-family: "Sora ExtraBold", sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    line-height: normal;
+    margin: 0px 0px 0px 50px;
+}
+.AllRecipes-filter {
+    width: 350px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333333;
+    cursor: pointer;
+    line-height: 1.5;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+/* Arrow Styling */
+.AllRecipes-filter-wrapper {
+    position: relative;
+    display: inline-block; /* Allows for positioning of pseudo-elements */
+    margin: 0px 50px 0px 0px;
+}
+
+/* Custom arrow */
+.AllRecipes-filter-wrapper:after {
+    content: '\25BC'; /* Unicode for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Makes sure clicks pass through to the select element */
+    color: #333333; /* Arrow color */
+    font-size: 12px; /* Arrow size */
+}
+
+/* Hover State */
+.AllRecipes-filter:hover {
+    border-color: #aaaaaa; /* Darker border on hover */
+}
+
+/* Focus State */
+.AllRecipes-filter:focus {
+    border-color: #666666; /* Even darker border for focus */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Stronger shadow for focus */
+}
+
+/* Select element when opened */
+.AllRecipes-filter:active,
+.AllRecipes-filter.show {
+    border-color: #666666; /* Dark border when active/open */
+}
+.Recipe-list{
+    display: flex;
+    padding: 10px;
+    margin: 0px 0px 0px 100px;
+}
+.Recipe-list-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 20px;
+    background-color: #555555;
+}
+.Recipe-list-favorite{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+.Recipe-list-title{
+    font-family: "Sora SemiBold", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #000000;
+    margin: 0px 0px 10px 0px;
+}
+.Recipe-list-user {
+    font-family: "Sora Light", sans-serif;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 0px 0px 10px 0px;
+}
+.Recipe-list-description{
+    font-family: "Sora Regular", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #555;
+    margin: 0px 0px 10px 0px;
+}
+.Recipe-list-rating {
+    color: gold;
+    padding: 3px 6px;
+    display: inline-block;
+    margin: 10px 0px 15px 0px;
+    border-radius: 5px;
+    font-size: 0.8em;
 }

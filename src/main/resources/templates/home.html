@@ -26,6 +26,28 @@
       </div>
       <img class="description-image" src="images/description1.jpg" alt="food">
     </div>
+    <div class="AllRecipes-section">
+      <div class="AllRecipes-header">
+        <h1>All Recipes</h1>
+        <div class="AllRecipes-filter-wrapper">
+        <select class="AllRecipes-filter">
+          <option value="1">Most Recent</option>
+          <option value="2">Most Popular</option>
+          <option value="3">Most Favorited</option>
+        </select>
+        </div>
+      </div>
+      <div class="Recipe-list">
+        <div class="Recipe-list-image"></div>
+        <div class="Recipe-list-info">
+          <button class="Recipe-list-favorite">Favorite</button>
+          <h2 class="Recipe-list-title">Recipe 1</h2>
+          <p class="Recipe-list-user">By User 1</p>
+          <p class="Recipe-list-description">test</p>
+          <div class="Recipe-list-rating">★★★★★</div>
+        </div>
+      </div>
+    </div>
   </main>
   <div th:replace="fragments/footer :: footer" > </div>
 </div>
