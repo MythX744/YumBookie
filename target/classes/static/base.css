@@ -28,6 +28,8 @@ header {
 
 header img {
     margin-right: 20px;
+    width: 150px;
+    height:auto;
 }
 
 header nav {
@@ -48,14 +50,17 @@ header nav a {
 }
 
 header nav a:hover {
-    background-color: #EB5D21;
+    background-color: #FF8C61;
     color: white;
 }
 footer {
+     font-family: "Sora Regular", sans-serif;
+     font-weight: 400;
      background: #333;
      color: #fff;
      text-align: center;
      margin-top: -50px;
+     font-size: 16px;
 }
 #mainBase {
     margin-top: 103px;
