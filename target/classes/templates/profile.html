@@ -11,24 +11,23 @@
     <!-- Sign Up Form Content -->
     <div class="form-container">
       <form th:action="@{/profile}" method="post" th:object="${user}">
-        <a href="http://" id="home">Home</a>
+        <a id="home" th:href="@{/main}">Home</a>
         <div class="profile-picture">
-          <img src="C:\Users\HP PRO\IDesktop\src\main\resources\static\images\profil.png" alt="profilPic" >
         </div>
         <div id="formulaire">
           <div class="input-group">
-            <p id="para">FULL NAME</p>
+            <p id="para" th:text="${fullName}">FULL NAME</p>
             <br>
             <label for="full-name">Full Name:</label>
-            <input type="text" th:field="*{name}" id="full-name" name="full_name" placeholder="Full Name">
+            <input type="text" id="full-name" name="full_name" placeholder="Full Name" th:text="${fullName}">
           </div>
           <div class="input-group">
             <label for="email">Email:</label>
-            <input type="email" th:field="*{email}" id="email" name="email" placeholder="Email" disabled>
+            <input type="email"  id="email" name="email" placeholder="Email" disabled th:text="${email}">
           </div>
           <div class="input-group">
             <label for="password">Password:</label>
-            <input type="password" th:field="*{password}" id="password" name="password" placeholder="Password">
+            <input type="password" id="password" name="password" placeholder="Password" th:text="${password}">
           </div>
         </div>
         <br>
@@ -44,35 +43,37 @@
         <p style=" margin-left: 20px; font-size: 20px">N recipes published</p>
         <div class="controls">
           <form th:action="@{/profile}" method="post">
-            <input type="search" name="search" id="search" placeholder="Search for a recipe">
             <select name="filter" id="filter">
               <option disabled selected value="">Filtering Options</option>
               <option value="AZ">A-Z</option>
               <option value="ZA">Z-A</option>
               <!-- Add more filter options as needed -->
             </select>
-            <button id="searchbtn">Search</button>
+            <button id="searchbtn">Filter</button>
           </form>
         </div>
       </div>
       <div id="recipe-card-container">
-        <div class="recipe-card">
-          <div class="image-placeholder">img,still div</div>
-          <div class="recipe-info">
-            <h1>Title</h1>
-            <p>Time for preparation:</p>
-            <div class="rating">
+        <form th:action="@{/profile}" method="post">
+          <div class="recipe-card" th:each="recipe : ${recipes}">
+            <div class="image-placeholder">
+              <img th:src="@{${recipe.image}}" alt="Recipe image" />
+            </div>
+            <div class="recipe-info">
+              <h1 th:text="${recipe.title}"></h1>
+              <p th:text="'Category: ' + ${recipe.category}"></p>
               <div class="rating">
-                <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
-                <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
-                <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
-                <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
-                <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                <div class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                  <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                  <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                  <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                  <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Add more recipe cards as needed -->
+        </form><!-- Add more recipe cards as needed -->
       </div>
     </div>
   </div>

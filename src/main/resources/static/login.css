@@ -48,7 +48,8 @@ body {
     border-radius: 4px;
     font-size: 1.1rem;
 }
-.action-button {
+#action-button {
+    text-align: center;
     width: 100%;
     padding: 1.25rem;
     border: none;
@@ -138,7 +139,3 @@ body {
     margin-top: 1rem;
 }
 
-#sub {
-    color : #ffffff;
-
-}
