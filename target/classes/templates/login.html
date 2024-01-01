@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="form-section">
-    <h5 class="brand-name" th:text="${title}">YumBookie</h5>
+    <h5 class="brand-name" >YumBookie</h5>
     <div class="form-container">
         <form th:action="@{/login}" th:object="${user}" method="post">
             <h2 th:text="${heading}">Login</h2>
@@ -16,7 +16,7 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
             </div>
-            <button id="action-button" th:text="${buttonText}">Login</button>
+            <button id="action-button" >Login</button>
             <div class="login-btn">
                 <a href="signup.html" th:href="@{/signup}">Don't have an account? Sign up</a>
             </div>
