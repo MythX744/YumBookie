@@ -13,6 +13,10 @@
 body{
     margin:0;
     background-color: #FCFCFF;
+
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 
 header {
@@ -20,16 +24,21 @@ header {
      align-items: center;
      justify-content: space-between;
      background-color: #fff;
-     padding: 0px 20px;
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
+     position: fixed;
+     width: 100%;
+     z-index: 1000;
 }
 
-header img {
-    margin-right: 20px;
+.logo {
     width: 150px;
     height:auto;
+    margin: 0 0 0 20px;
+}
+
+.profile-header {
+    width: 50px;
+    height: 50px;
+    margin: 0 20px 0 100px;
 }
 
 header nav {

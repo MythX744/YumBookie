@@ -10,8 +10,8 @@
   <div class="signup-form" style="width: 25%;">
     <!-- Sign Up Form Content -->
     <div class="form-container">
+      <a id="home" th:href="@{/home}">Home</a>
       <form th:action="@{/profile}" method="post" th:object="${user}">
-        <a id="home" th:href="@{/main}">Home</a>
         <div class="profile-picture">
         </div>
         <div id="formulaire">
@@ -19,15 +19,15 @@
             <p id="para" th:text="${fullName}">FULL NAME</p>
             <br>
             <label for="full-name">Full Name:</label>
-            <input type="text" id="full-name" name="full_name" placeholder="Full Name" th:text="${fullName}">
+            <input type="text" id="full-name" name="full_name" placeholder="Full Name" th:field="${fullName}">
           </div>
           <div class="input-group">
             <label for="email">Email:</label>
-            <input type="email"  id="email" name="email" placeholder="Email" disabled th:text="${email}">
+            <input type="email"  id="email" name="email" placeholder="Email" disabled th:field="${email}">
           </div>
           <div class="input-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Password" th:text="${password}">
+            <input type="password" id="password" name="password" placeholder="Password" th:field="${password}">
           </div>
         </div>
         <br>
