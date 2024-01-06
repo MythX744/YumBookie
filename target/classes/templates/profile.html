@@ -60,7 +60,13 @@
               <img th:src="@{${recipe.image}}" alt="Recipe image" />
             </div>
             <div class="recipe-info">
-              <h1 th:text="${recipe.title}"></h1>
+              <div id="firstline">
+                <h2 th:text="${recipe.title}">ddd</h2>
+                <div id="btnss">
+                  <button id="editbtn">Edit</button>
+                  <button id="deletebtn">Delete</button>
+                </div>
+              </div>
               <p th:text="'Category: ' + ${recipe.category}"></p>
               <div class="rating">
                 <div class="rating">

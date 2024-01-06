@@ -1,8 +1,18 @@
+@font-face {
+    font-family: 'Sora';
+    src: url('/fonts/Sora-Bold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraBold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraLight.ttf') format('truetype');
+    src: url('/fonts/Sora-Light.ttf') format('truetype');
+    src: url('/fonts/Sora-Medium.ttf') format('truetype');
+    src: url('/fonts/Sora-Regular.ttf') format('truetype');
+    src: url('/fonts/Sora-SemiBold.ttf') format('truetype');
+    src: url('/fonts/Sora-Thin.ttf') format('truetype');
+}
 * {
     box-sizing: border-box;
 }
 body {
-    font-family: Arial, sans-serif;
     display: flex;
     height: 100vh;
     margin: 0;
@@ -17,13 +27,15 @@ body {
     height: auto;
 }
 .form-section {
-    background-color: #F5F5F5;
+    background-image: url('/images/food_icons.png');
+    background-size: cover;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: -40px;
+
 }
 
 .form-container {
@@ -83,5 +95,14 @@ body {
     flex: 1;
     background: url('/images/food.jpg') no-repeat center center;
     background-size: cover;
+}
+.form-container h2{
+    color: #333333;
+    font-family: "Sora Bold", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: normal;
+    margin: 0 0 20px 0;
 }
 

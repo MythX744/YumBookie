@@ -22,7 +22,7 @@
 <div id="content-wrapBase">
 <div th:replace="fragments/header :: header" > </div>
 <main id="mainBase">
-  <form th:action="@{/Recipe/addRecipe}" th:object="${recipe}" method="post">
+  <form th:action="@{/Recipe/addRecipe}" th:object="${recipe}" method="post" enctype="multipart/form-data">
     <div class="upload-container">
       <h1>Recipe Submission:</h1>
       <p style="font-size: 20px;">Let's first start by uploading pictures of your recipe: </p>
@@ -32,7 +32,7 @@
           <span class="icon-placeholder"><i class="fa fa-image"></i></span>
           <p>You can drag files here to add them.</p>
         </div>
-        <input  type="file" accept="image/*" id="file-input" name="file" onchange="updateFileList()">
+        <input type="file" accept="image/*" id="file-input" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" onchange="updateFileList()" required="required">
         <label for="file-input" class="file-input-label">Add Files</label>
       </div>
       <div class="file-display">

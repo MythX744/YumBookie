@@ -9,7 +9,7 @@
     <img class="brand-name" src="/images/logo1.png" alt="logo">
     <div class="form-container">
         <form th:action="@{/User/login}" th:object="${user}" method="post">
-            <h2 th:text="${heading}">Login</h2>
+            <h2>Login</h2>
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="Email" th:field="*{email}">
             </div>
@@ -18,7 +18,7 @@
             </div>
             <button type="submit" class="action-button" value="Login">Login</button>
         </form>
-        <button class="register-btn">Register</button>
+        <button class="register-btn">Don't have an account ?</button>
     </div>
 </div>
 <div class="image-section">
