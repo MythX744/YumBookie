@@ -7,4 +7,5 @@ public interface IRecipeService {
     Recipe findById(int id);
     Recipe save(Recipe recipe);
     void deleteById(int id);
+
 }

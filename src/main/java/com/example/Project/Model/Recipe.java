@@ -2,6 +2,7 @@ package com.example.Project.Model;
 
 import jakarta.persistence.*;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipe;
     @ManyToOne
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "id_user")
     private User user;
     @Column(name = "title")
     private String title;
@@ -23,10 +24,9 @@ public class Recipe {
     private String ingredients;
     @Column (name = "stepPreparation")
     private String stepPreparation;
-    @ElementCollection
-    @CollectionTable(name = "recipe_images", joinColumns = @JoinColumn(name = "idRecipe"))
-    @Column(name = "imageUrl")
-    private ArrayList<String> image;
+    @Lob
+    @Column(name = "image", length = Integer.MAX_VALUE, nullable = true)
+    private Blob image;
 
     @Column (name = "category")
     private String category;
@@ -47,7 +47,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(int idRecipe, User user, String title, String description, String ingredients, String stepPreparation, ArrayList<String> image, String category, Set<Comment> comments, Set<Favorite> favorites, int cooking, int serving, int prepartation) {
+    public Recipe(int idRecipe, User user, String title, String description, String ingredients, String stepPreparation, Blob image, String category, Set<Comment> comments, Set<Favorite> favorites, int cooking, int serving, int prepartation) {
         this.idRecipe = idRecipe;
         this.user = user;
         this.title = title;
@@ -103,11 +103,11 @@ public class Recipe {
         this.stepPreparation = stepPreparation;
     }
 
-    public ArrayList<String> getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(ArrayList<String> image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 
