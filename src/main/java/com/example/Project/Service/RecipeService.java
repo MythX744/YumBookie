@@ -1,6 +1,7 @@
 package com.example.Project.Service;
 
 import com.example.Project.Model.Recipe;
+import com.example.Project.Model.User;
 import com.example.Project.dao.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public List<Recipe> findByUser(User user) {
+        return recipeDao.findByUser(user);
+    }
+
+    @Override
     public Recipe findById(int id) {
             Optional<Recipe> result = recipeDao.findById(id);
 
@@ -41,7 +47,6 @@ public class RecipeService implements IRecipeService {
     public Recipe save(Recipe recipe) {
         return recipeDao.save(recipe);
     }
-
 
     @Override
     public void deleteById(int id) {

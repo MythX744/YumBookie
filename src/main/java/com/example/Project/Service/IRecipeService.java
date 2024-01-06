@@ -1,6 +1,7 @@
 package com.example.Project.Service;
 
 import com.example.Project.Model.Recipe;
+import com.example.Project.Model.User;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,5 +10,5 @@ public interface IRecipeService {
     Recipe findById(int id);
     Recipe save(Recipe recipe) throws IOException;
     void deleteById(int id);
-
+    List<Recipe> findByUser(User user);
 }

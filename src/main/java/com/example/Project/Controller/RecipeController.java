@@ -79,4 +79,31 @@ public class RecipeController {
         return "profile";
     }
 
+    @GetMapping("/showUserRecipes")
+    public String showUserRecipes(HttpSession session, Model model) {
+        String userEmail = (String) session.getAttribute("userEmail");
+        User user = userService.findByEmail(userEmail);
+        if (user != null) {
+            List<Recipe> userRecipes = recipeService.findByUser(user);
+            model.addAttribute("recipes", userRecipes);
+            return "userRecipes"; // The name of the Thymeleaf template to display the recipes
+        } else {
+            return "redirect:/User/loadLogin"; // Redirect to login if the user is not found
+        }
+    }
+
+    @GetMapping("/showAllRecipes")
+    public List<Recipe> showAllRecipes(Model model) {
+        List<Recipe> recipes = recipeService.findAll();
+        model.addAttribute("recipes", recipes);
+        return recipes; // The name of the Thymeleaf template to display the recipes
+    }
+
+    @GetMapping("/eachRecipe/{id}")
+    public String eachRecipe(@RequestParam("recipeId") int id, Model model){
+        Recipe recipe = recipeService.findById(id);
+        model.addAttribute("recipe", recipe);
+        return "eachRecipe";
+    }
+
 }

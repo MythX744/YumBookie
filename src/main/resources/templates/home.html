@@ -82,14 +82,16 @@
     }else {
       recipes.forEach(recipe => {
         container.innerHTML += `
-              <div class="recipe-card">
-                  <input type="hidden" name="recipe_id" value="${recipe.id_recipe}">
-                  <div class="recipe-image"></div>
-                   <img src="/images/isfavorite.png" class="favorite-button" alt="Add to Favorites">
-                  <h2 class="recipe-title">${recipe.title}</h2>
-                  <p class="recipe-user">By ${recipe.user}</p>
-                  <div class="recipe-rating">${'★'.repeat(recipe.rating)}</div>
-              </div>
+              <a href="/Recipe/eachRecipe/${recipe.id_recipe}" class="recipe-card-link">
+                <div class="recipe-card">
+                    <input type="hidden" name="recipe_id" value="${recipe.id_recipe}">
+                    <div class="recipe-image"></div>
+                     <img src="/images/isfavorite.png" class="favorite-button" alt="Add to Favorites">
+                    <h2 class="recipe-title">${recipe.title}</h2>
+                    <p class="recipe-user">By ${recipe.user}</p>
+                    <div class="recipe-rating">${'★'.repeat(recipe.rating)}</div>
+                </div>
+              </a>
           `;
       });}
 

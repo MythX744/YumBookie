@@ -41,6 +41,9 @@ public class Recipe {
     @Column(name = "preparation")
     private int preparation;
 
+    @Column(name = "rating")
+    private int rating;
+
     public Recipe() {
     }
 
@@ -164,6 +167,13 @@ public class Recipe {
         this.preparation = preparation;
     }
 
+    public int getRating() {
+        return rating;
+    }
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -180,6 +190,7 @@ public class Recipe {
                 ", cooking=" + cooking +
                 ", serving=" + serving +
                 ", preparation=" + preparation +
+                ", rating=" + rating +
                 '}';
     }
 }
