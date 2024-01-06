@@ -33,7 +33,7 @@ public class PageController {
         return "";
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/User/profile")
     public String LoadProfile(Model theModel){
         return "profile";
     }
