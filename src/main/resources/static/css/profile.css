@@ -13,6 +13,7 @@ body, html {
     text-decoration: underline;
     color: #FF8C61;
     box-shadow: none;
+    cursor: pointer;
 }
 
 .page-container {
@@ -162,6 +163,11 @@ h1 {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+#searchbtn:hover {
+    background: #e64a19;
+}
+
+
 #search{
     min-width: 350px;
     padding: 0 5px;
@@ -226,12 +232,66 @@ select {
 
 .recipe-info {
     flex-grow: 1;
+
 }
 
 .recipe-info h1 {
     margin: 0;
     color: #333;
     font-size: 40px;
+}
+
+#firstline{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -60px;
+}
+
+#btnss{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: auto 10px;
+}
+
+#editbtn{
+    background: #FF8C61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    width: auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#editbtn:hover {
+    background: #e64a19;
+}
+
+#deletebtn{
+    background: #fe7474;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    width: auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+#deletebtn:hover {
+    background: #ff1313;
 }
 
 .rating {
