@@ -32,7 +32,6 @@ public class RecipeController {
         return "addRecipe";
     }
 
-
     @PostMapping("/addRecipe")
     public String addRecipe(@ModelAttribute("recipe") Recipe recipe, Model model, @RequestParam("image") MultipartFile file)
             throws IOException, SerialException, SQLException{

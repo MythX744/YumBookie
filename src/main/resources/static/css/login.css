@@ -46,91 +46,42 @@ body {
     border-radius: 4px;
     font-size: 1.1rem;
 }
-#action-button {
+.action-button {
     text-align: center;
     width: 100%;
     padding: 1.25rem;
     border: none;
     border-radius: 4px;
     color: #ffffff;
-    background-color: #EB5D21;
+    background-color: #FF8C61;
     cursor: pointer;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
+    transition: background-color 0.3s, transform 0.2s;
 }
-.login-btn {
+.action-button:hover {
+    background-color: #FF7B4F;
+}
+.register-btn {
     text-align: center;
     padding: 1.25rem;
     background-color: #F5B236;
-}
-.login-btn a {
     color: #FFFFFF;
     text-decoration: none;
     font-size: 1.1rem;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
 }
+.register-btn:hover {
+    background-color: #F5A826;
+}
+
 .image-section {
     flex: 1;
-    background: url('/static/images/food.jpg') no-repeat center center;
+    background: url('/images/food.jpg') no-repeat center center;
     background-size: cover;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
-.login-form h1 {
-    font-size: 2.5rem;
-    color: #EB5D21;
-    margin-bottom: 1rem;
-}
-
-.login-form form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 450px;
-    padding: 2rem;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.login-form input {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #808080;
-    border-radius: 4px;
-    font-size: 1.1rem;
-}
-
-.login-form button[type="submit"] {
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-radius: 4px;
-    color: #FFFFFF;
-    background-color: #EB5D21;
-    cursor: pointer;
-    font-size: 1.1rem;
-}
-
-.login-form a {
-    color: #EB5D21;
-    text-decoration: none;
-    font-size: 1.1rem;
-}
-
-.login-form p {
-    color: #808080;
-    font-size: 1.1rem;
-    margin-top: 1rem;
 }
 

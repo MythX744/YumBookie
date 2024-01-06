@@ -25,10 +25,8 @@
                 <input th:field="*{password}" type="password" id="password" name="password" placeholder="Password"/>
             </div>
             <button type="submit" class="action-button">Join Now</button>
-            <div class="login-btn">
-                <a th:href="@{/User/login}">Already have an account, login</a>
-            </div>
         </form>
+        <button class="login-btn">Already have an account, login</button>
     </div>
 
 </div>
@@ -37,3 +35,9 @@
 </div>
 </body>
 </html>
+<script>
+    const loginBtn = document.querySelector('.login-btn');
+    loginBtn.onclick = () => {
+        location.href = '/User/loadLogin';
+    }
+</script>
