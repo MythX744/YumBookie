@@ -88,9 +88,9 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(SessionStatus status) {
-        status.setComplete();
-        return "redirect:/";
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/User/loadLogin";
     }
 
 }

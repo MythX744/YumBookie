@@ -22,9 +22,11 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
+    public User findByEmail(String email) {
+        Optional<User> user = userDao.findByEmail(email);
+        return user.orElse(null);
     }
+
     @Override
     public User findById(int id) {
             Optional<User> result = userDao.findById(id);
