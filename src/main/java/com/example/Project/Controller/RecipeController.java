@@ -1,6 +1,7 @@
 package com.example.Project.Controller;
 
 import com.example.Project.Model.Recipe;
+import com.example.Project.Service.IRecipeService;
 import com.example.Project.dao.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,34 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/recipe")
+@RequestMapping("/Recipe")
 public class RecipeController {
 
-
-    private RecipeDao recipeDao;
+    private IRecipeService recipeService;
 
     @Autowired
-    public RecipeController(RecipeDao recipeDao){
-        this.recipeDao=recipeDao;
+    public RecipeController(IRecipeService recipeService){
+        this.recipeService=recipeService;
     }
 
 
-    @GetMapping("/addrecipe")
-    public String showAddRecipe(@ModelAttribute("recipe") Recipe recipe){
-        return "addrecipe";
+    @GetMapping("/loadAddRecipe")
+    public String loadAddRecipe(@ModelAttribute("recipe") Recipe recipe){
+        return "addRecipe";
     }
 
 
-    @PostMapping("/addrecipe")
-    public String addnewRecipe(@ModelAttribute("recipe") Recipe recipe, Model model){
-        recipeDao.save(recipe);
+    @PostMapping("/addRecipe")
+    public String addRecipe(@ModelAttribute("recipe") Recipe recipe, Model model){
+        recipeService.save(recipe);
         model.addAttribute("message", "Created successfully");
-        return "addrecipe";
+        return "redirect:/navigation/home";
     }
 
     @PostMapping("/profile")
     public String listUserRecipes(Model model) {
-        List<Recipe> recipes = recipeDao.findAll();
+        List<Recipe> recipes = recipeService.findAll();
         model.addAttribute("recipes", recipes);
         return "profile";
     }

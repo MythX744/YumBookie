@@ -11,10 +11,12 @@
 <div id="content-wrapBase">
   <div th:replace="fragments/header :: header" > </div>
   <main id="mainBase">
+    <form th:action="@{/Recipe/loadAddRecipe}" th:object="${recipe}" method="get">
     <div class="subheader">
       <input class="search" type="text" placeholder="Looking for a recipe ?">
-      <button class="subheader-button">Publish</button>
+      <button class="subheader-button" type="submit">Publish</button>
     </div>
+    </form>
     <h1>Trending</h1>
     <div id="grid-container" class="grid-container">
       <!-- Recipe cards will be added here -->

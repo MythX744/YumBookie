@@ -100,7 +100,7 @@ td {
     outline: none;
 }
 
-#p1{
+.p1{
     font-size: 20px;
 }
 
@@ -194,7 +194,7 @@ h2 {
     color: #000;
 }
 
-#rd {
+.rd {
     padding-left: 10px; /* Add padding to the left of 'mins' and 'people' */
 }
 

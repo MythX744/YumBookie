@@ -22,7 +22,7 @@
 <div id="content-wrapBase">
 <div th:replace="fragments/header :: header" > </div>
 <main id="mainBase">
-  <form th:action="@{/addrecipe}" th:object="${recipe}" method="post">
+  <form th:action="@{/Recipe/addRecipe}" th:object="${recipe}" method="post">
     <div class="upload-container">
       <h1>Recipe Submission:</h1>
       <p style="font-size: 20px;">Let's first start by uploading pictures of your recipe: </p>
@@ -46,7 +46,7 @@
         <table class="info-table">
           <tr>
             <td>
-              <p id="p1">Now let's add the recipe's name:</p>
+              <p class="p1">Now let's add the recipe's name:</p>
             </td>
             <td>
               <input th:field="*{title}" type="text" id="title" name="title" placeholder="Recipe's name">
@@ -54,7 +54,7 @@
           </tr>
           <tr>
             <td>
-              <p id="p1">Choose the recipe category:</p>
+              <p class="p1">Choose the recipe category:</p>
             </td>
             <td>
               <select th:field="*{category}" name="filter" id="filter">
@@ -77,17 +77,17 @@
           <tr>
             <td><i class="fa fa-clock"></i> Preparation:</td>
             <td><input th:field="*{preparation}" type="text" placeholder="in mins"></td>
-            <td id="rd">mins</td>
+            <td class="rd">mins</td>
           </tr>
           <tr>
             <td><i class="fa fa-fire"></i> Cooking:</td>
             <td><input th:field="*{cooking}" type="text" placeholder="in mins"></td>
-            <td id="rd">mins</td>
+            <td class="rd">mins</td>
           </tr>
           <tr>
             <td><i class="fa fa-users"></i> Servings:</td>
             <td><input th:field="*{serving}" type="text" placeholder="people"></td>
-            <td id="rd">people</td>
+            <td class="rd">people</td>
           </tr>
         </table>
       </div>
