@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>YumBookie - Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" th:href="@{login.css}">
 </head>
 <body>
 <div class="form-section">
     <img class="brand-name" src="/images/logo1.png" alt="logo">
     <div class="form-container">
-        <form th:action="@{/login}" th:object="${user}" method="post">
+        <form th:action="@{/User/login}" th:object="${user}" method="post">
             <h2 th:text="${heading}">Login</h2>
             <div class="input-group">
                 <input type="email" id="email" name="email" placeholder="Email" th:field="*{email}">
@@ -16,7 +16,7 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
             </div>
-            <button id="action-button" >Login</button>
+            <button type="submit" value="Login">Login</button>
             <div class="login-btn">
                 <a href="signup.html" th:href="@{/signup}">Don't have an account? Sign up</a>
             </div>
