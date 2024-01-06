@@ -76,4 +76,14 @@ public class UserController {
         }
     }
 
+    @GetMapping("/loadSignup")
+    public String getRegPage(@ModelAttribute("user") User user){
+        return "signup";
+    }
+    @PostMapping("/signup")
+    public String saveUser(@ModelAttribute("user") User user, Model model){
+        userService.save(user);
+        return "login";
+    }
+
 }
