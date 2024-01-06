@@ -1,0 +1,123 @@
+
+@font-face {
+    font-family: 'Sora';
+    src: url('/fonts/Sora-Bold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraBold.ttf') format('truetype');
+    src: url('/fonts/Sora-ExtraLight.ttf') format('truetype');
+    src: url('/fonts/Sora-Light.ttf') format('truetype');
+    src: url('/fonts/Sora-Medium.ttf') format('truetype');
+    src: url('/fonts/Sora-Regular.ttf') format('truetype');
+    src: url('/fonts/Sora-SemiBold.ttf') format('truetype');
+    src: url('/fonts/Sora-Thin.ttf') format('truetype');
+}
+body{
+    margin:0;
+    background-color: #FCFCFF;
+
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     background-color: #fff;
+     position: fixed;
+     width: 100%;
+     z-index: 1000;
+}
+
+.logo {
+    width: 150px;
+    height:auto;
+    margin: 0 0 0 20px;
+    cursor: pointer;
+}
+
+.profile-header {
+    width: 50px;
+    height: 50px;
+    margin: 0 20px 0 100px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.profile-container {
+    position: relative;
+    display: inline-block;
+    height: auto;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.profile-dropdown a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+    font-family: "Sora Light", sans-serif;
+}
+
+.profile-dropdown a:hover {
+    background-color: #cccccc;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+header nav a {
+    font-family: "Sora Regular", sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+    padding: 40px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 20px;
+}
+
+header nav a:hover {
+    background-color: #FF8C61;
+    color: white;
+}
+footer {
+     font-family: "Sora Regular", sans-serif;
+     font-weight: 400;
+     background: #333;
+     color: #fff;
+     text-align: center;
+     margin-top: -50px;
+     font-size: 16px;
+}
+#mainBase {
+    margin-top: 103px;
+    flex: 1;
+    padding-bottom: 100px;
+}
+.containerBase {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+#content-wrapBase {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
