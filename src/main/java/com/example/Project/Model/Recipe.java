@@ -23,7 +23,7 @@ public class Recipe {
     private String ingredients;
     @Column (name = "stepPreparation")
     private String stepPreparation;
-    @Column(name = "image", length = Integer.MAX_VALUE, nullable = true)
+    @Column(name = "image")
     private String image;
     @Column (name = "category")
     private String category;

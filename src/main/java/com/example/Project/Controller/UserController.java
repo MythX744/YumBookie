@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
 
@@ -84,6 +85,12 @@ public class UserController {
     public String saveUser(@ModelAttribute("user") User user, Model model){
         userService.save(user);
         return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(SessionStatus status) {
+        status.setComplete();
+        return "redirect:/";
     }
 
 }
