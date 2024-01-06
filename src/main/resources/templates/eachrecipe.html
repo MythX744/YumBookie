@@ -12,68 +12,71 @@
 <div id="content-wrapBase">
     <div th:replace="fragments/header :: header" > </div>
     <main id="mainBase">
-<div class="upload-container">
-    <h1>Recipe TITLE</h1>
-    <p style="font-size: 20px;">Category : VARIABLE </p>
-    <div class="gallery-wrapper">
-        <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
+        <div class="upload-container">
+            <h1>Recipe TITLE</h1>
+            <p style="font-size: 20px;">Category : VARIABLE </p>
+            <div class="gallery-wrapper">
+                <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
 
-        <div class="horizontal-scroll-container" id="image-scroll-container">
-            <!-- Images will be dynamically inserted here -->
+                <div class="horizontal-scroll-container" id="image-scroll-container">
+                    <!-- Images will be dynamically inserted here -->
+                </div>
+
+                <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
+            </div>
+
+            <input type="file" id="file-input" multiple accept="image/*" style="display:none;">
+            <label for="file-input">Upload Images</label>
         </div>
+        <div class="container">
+            <div class="recipe-details-container">
+                <h2>Recipe Details</h2>
+                <table class="recipe-info-table">
+                    <tr>
+                        <td><i class="fa fa-clock"></i> Preparation:</td>
+                        <td><input type="text" placeholder="in mins"></td>
+                        <td id="rd">mins</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-fire"></i> Cooking:</td>
+                        <td><input type="text" placeholder="in mins"></td>
+                        <td id="rd">mins</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-users"></i> Servings:</td>
+                        <td><input type="text" placeholder="people"></td>
+                        <td id="rd">people</td>
+                    </tr>
+                </table>
+            </div>
 
-        <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
-    </div>
+            <div class="description-container">
+                <h2>Recipe description</h2>
+                <textarea placeholder="Enter your description here"></textarea>
+            </div>
+        </div>
+        <div class="container1">
+            <div class="ingredients-container">
+                <h2>Ingredients</h2>
+                <p>ingredients</p>
+            </div>
 
-    <input type="file" id="file-input" multiple accept="image/*" style="display:none;">
-    <label for="file-input">Upload Images</label>
-</div>
-<div class="container">
-    <div class="recipe-details-container">
-        <h2>Recipe Details</h2>
-        <table class="recipe-info-table">
-            <tr>
-                <td><i class="fa fa-clock"></i> Preparation:</td>
-                <td><input type="text" placeholder="in mins"></td>
-                <td id="rd">mins</td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-fire"></i> Cooking:</td>
-                <td><input type="text" placeholder="in mins"></td>
-                <td id="rd">mins</td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-users"></i> Servings:</td>
-                <td><input type="text" placeholder="people"></td>
-                <td id="rd">people</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="description-container">
-        <h2>Recipe description</h2>
-        <textarea placeholder="Enter your description here"></textarea>
-    </div>
-</div>
-<div class="container1">
-    <div class="ingredients-container">
-        <h2>Ingredients</h2>
-        <ul id="ingredients-list">
-            <li><input type="text" placeholder="Ingredient" onkeypress="handleKeyPress(event, 'ingredients-list')"></li>
-        </ul>
-    </div>
-
-    <!-- Cooking Steps Section -->
-    <div class="cooking-container">
-        <h2>Cooking steps</h2>
-        <ul id="cooking-list">
-            <li><input type="text" placeholder="Cooking step" onkeypress="handleKeyPress(event, 'cooking-list')"></li>
-        </ul>
-    </div>
-</div>
-<div id="comments">
-    <h1>Comments:</h1>
-</div>
+            <!-- Cooking Steps Section -->
+            <div class="cooking-container">
+                <h2>Cooking steps</h2>
+                <p>cooking steps</p>
+            </div>
+        </div>
+        <div id="comments">
+            <h1 id="gg">Comments:</h1>
+            <form action="" method="post">
+                <button type="submit" id="pbtn">Add comment</button>
+            </form>
+            <div class="cooking-container1">
+                <p><b>Username</b></p>
+                <p id="commentt">Comment text </p>
+            </div>
+        </div>
     </main>
     <div th:replace="fragments/footer :: footer" > </div>
 </div>

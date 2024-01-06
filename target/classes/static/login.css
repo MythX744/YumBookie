@@ -10,13 +10,11 @@ body {
     background-color: #FFFFFF;
 }
 .brand-name {
-    font-size: 3rem;
-    color: #EB5D21;
     margin-bottom: 2rem;
     text-align: center;
-    height: min-content;
     margin-top: -40px;
-    width: 100%;
+    width: 350px;
+    height: auto;
 }
 .form-section {
     background-color: #F5F5F5;
@@ -72,10 +70,7 @@ body {
 }
 .image-section {
     flex: 1;
-    background-image: url('/images/food.JPG');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    background: url('/images/food.jpg') no-repeat center center;
     background-size: cover;
 }
 

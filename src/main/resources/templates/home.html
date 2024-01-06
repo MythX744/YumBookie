@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{base.css}" />
-  <link rel="stylesheet" th:href="@{home.css}" />
+  <link rel="stylesheet" th:href="@{/css/base.css}"/>
+  <link rel="stylesheet" th:href="@{/css/home.css}"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <title>Title</title>
 </head>
@@ -24,7 +24,7 @@
         <h2>YumBookie, your passport to a world of culinary delights!</h2>
         <p>Explore YumBookie, your culinary companion on a flavorful journey. Discover endless recipes for chefs of all levels, visualize dishes with high-quality images, find recipes by category, enjoy a user-friendly experience, savor global flavors, and enhance your skills with interactive features.</p>
       </div>
-      <img class="description-image" src="images/description1.jpg" alt="food">
+      <img class="description-image" src="/images/description1.jpg" alt="food">
     </div>
     <div class="AllRecipes-section">
       <div class="AllRecipes-header">
@@ -46,7 +46,9 @@
             <button class="Recipe-list-favorite">♥</button>
           </div>
           <p class="Recipe-list-user">By User 1</p>
-          <p class="Recipe-list-description">HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH</p>
+          <div class="Recipe-list-description">
+            <p>hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+          </div>
           <div class="Recipe-list-rating">★★★★★</div>
         </div>
       </div>
@@ -58,6 +60,7 @@
   </main>
   <div th:replace="fragments/footer :: footer" > </div>
 </div>
+<script th:src="@{/js/header.js}"></script>
 </body>
 </html>
 

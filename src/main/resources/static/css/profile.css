@@ -11,7 +11,7 @@ body, html {
     border: none;
     background: none;
     text-decoration: underline;
-    color: #EB5D21;
+    color: #FF8C61;
     box-shadow: none;
 }
 
@@ -80,7 +80,7 @@ body, html {
 }
 
 button {
-    background: #EB5D21;
+    background: #FF8C61;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -157,7 +157,7 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     border-radius: 14px;
-    background: #EB5D21;
+    background: #FF8C61;
     color: white;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }

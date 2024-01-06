@@ -27,11 +27,11 @@ body, html {
 
 .icon-placeholder {
     font-size: 50px; /* Icon size */
-    color: #EB5D21; /* Icon color */
+    color: #FF8C61; /* Icon color */
 }
 
 .file-input-label {
-    background-color: #EB5D21;
+    background-color: #FF8C61;
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -69,7 +69,7 @@ td {
 }
 
 .delete-button {
-    background-color: #f44336;
+    background-color: #FF8C61;
     color: white;
     padding: 5px 10px;
     margin-left: 1px;
@@ -306,7 +306,7 @@ h2 {
 }
 
 #pbtn{
-    background: #EB5D21;
+    background: #FF8C61;
     color: white;
     border: none;
     padding: 10px 20px;

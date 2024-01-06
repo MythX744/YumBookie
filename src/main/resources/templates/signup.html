@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YumBookie - Sign Up</title>
-<link rel="stylesheet" th:href="@{register.css}">
+<link rel="stylesheet" th:href="@{/css/register.css}">
 
 </head>
 <body>
 <div class="form-section">
-<h5 class="brand-name">YumBookie</h5>
+    <img class="brand-name" src="/images/logo1.png" alt="logo">
     <div class="form-container">
-        <form th:action="@{/signup}" th:object="${user}" method="post">
+        <form th:action="@{/User/signup}" th:object="${user}" method="post">
             <h2>Sign Up</h2>
             <div class="input-group">
                 <input th:field="*{name}" type="text" id="full-name" name="fullName" placeholder="Full Name"/>
@@ -26,7 +26,7 @@
             </div>
             <button type="submit" class="action-button">Join Now</button>
             <div class="login-btn">
-                <a th:href="@{/login}">Already have an account, login</a>
+                <a th:href="@{/User/login}">Already have an account, login</a>
             </div>
         </form>
     </div>
