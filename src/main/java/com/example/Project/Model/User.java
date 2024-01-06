@@ -10,7 +10,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="id_user")
     private int idUser;
     @Column(name="name")
     private String name;
@@ -18,7 +18,6 @@ public class User {
     private String email;
     @Column(name="password")
     private String password;
-
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Recipe> recipes = new HashSet<>();

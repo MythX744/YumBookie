@@ -1,8 +1,8 @@
 package com.example.Project.Model;
 
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +13,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipe;
     @ManyToOne
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "id_user")
     private User user;
     @Column(name = "title")
     private String title;
@@ -23,11 +23,8 @@ public class Recipe {
     private String ingredients;
     @Column (name = "stepPreparation")
     private String stepPreparation;
-    @ElementCollection
-    @CollectionTable(name = "recipe_images", joinColumns = @JoinColumn(name = "idRecipe"))
-    @Column(name = "imageUrl")
-    private ArrayList<String> image;
-
+    @Column(name = "image")
+    private String image;
     @Column (name = "category")
     private String category;
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
@@ -47,7 +44,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(int idRecipe, User user, String title, String description, String ingredients, String stepPreparation, ArrayList<String> image, String category, Set<Comment> comments, Set<Favorite> favorites, int cooking, int serving, int prepartation) {
+    public Recipe(int idRecipe, User user, String title, String description, String ingredients, String stepPreparation, String image, String category, Set<Comment> comments, Set<Favorite> favorites, int cooking, int serving, int prepartation) {
         this.idRecipe = idRecipe;
         this.user = user;
         this.title = title;
@@ -61,6 +58,14 @@ public class Recipe {
         this.cooking = cooking;
         this.serving = serving;
         this.preparation = prepartation;
+    }
+
+    public int getIdRecipe() {
+        return idRecipe;
+    }
+
+    public void setIdRecipe(int idRecipe) {
+        this.idRecipe = idRecipe;
     }
 
     public User getUser() {
@@ -103,11 +108,11 @@ public class Recipe {
         this.stepPreparation = stepPreparation;
     }
 
-    public ArrayList<String> getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(ArrayList<String> image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

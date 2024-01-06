@@ -16,15 +16,19 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}">
             </div>
-            <button type="submit" value="Login">Login</button>
-            <div class="login-btn">
-                <a href="signup.html" th:href="@{/signup}">Don't have an account? Sign up</a>
-            </div>
+            <button type="submit" class="action-button" value="Login">Login</button>
         </form>
+        <button class="register-btn">Register</button>
     </div>
 </div>
 <div class="image-section">
-
 </div>
 </body>
 </html>
+<script>
+    const registerBtn = document.querySelector('.register-btn');
+    registerBtn.onclick = () => {
+        location.href = '/User/loadSignup';
+    }
+</script>
+
