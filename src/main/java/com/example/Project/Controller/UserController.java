@@ -9,30 +9,26 @@ import com.example.Project.Service.IUserService;
 import com.example.Project.Model.User;
 import com.example.Project.dao.UserDao;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @Controller
+@SessionAttributes("username")
 @RequestMapping("/User")
 public class UserController {
 
     @Autowired
-    private UserDao userDao;
-
-
-    private IUserService userDao1;
+    private IUserService userService;
 
     @Autowired
-    public UserController(IUserService userDao) {
-        this.userDao1 = userDao;
+    public UserController(IUserService userService) {
+        this.userService = userService;
     }
 
     /*
@@ -49,39 +45,34 @@ public class UserController {
     @PostMapping("/profile")
     public User updateUser(@ModelAttribute("user") User user, Model model) {
         //still needs some changes like the getId method,
-        User existingUser = userDao1.findById(user.getIdUser());
+        User existingUser = userService.findById(user.getIdUser());
         if (existingUser != null) {
             existingUser.setName(user.getName());
             existingUser.setEmail(user.getPassword());
-            return userDao.save(existingUser);
+            return userService.save(existingUser);
         }
         else{
             return null;
         }
-
     }
 
-
-
-    public UserController(UserDao userDao){
-        this.userDao=userDao;
-    }
-    @GetMapping("/login")
-    public String getLoginPage(@ModelAttribute("user") User user) {
+    @GetMapping("/loadLogin")
+    public String getLoginPage(Model leModel) {
+        User theUser = new User();
+        leModel.addAttribute("user", theUser);
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user, Model model) {
-        User foundUser = userDao.findByEmail(user.getEmail());
-
-        if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
-
-            return "home";
+    public String login(HttpSession session, @ModelAttribute("user") User user) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+        if (userService.validateUser(email, password)) {
+            session.setAttribute("username", email);
+            return "redirect:/navigation/home";
         } else {
-
-            model.addAttribute("message", "Invalid username or password");
-            return "login";
+            System.out.println("Invalid credentials");
+            return "redirect:/User/login?error=true";
         }
     }
 

@@ -22,7 +22,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return userDao.findByEmail(email);
     }
     @Override
@@ -49,5 +49,14 @@ public class UserService implements IUserService{
     public void deleteById(int id) {
         userDao.deleteById(id);
     }
+
+    public boolean validateUser(String email, String password) {
+        User user = userDao.findByEmail(email).orElse(null);
+        if (user != null && user.getPassword().equals(password)){
+            return true;
+        }
+        return false;
+    }
+
 
 }
