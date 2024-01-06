@@ -1,11 +1,12 @@
 package com.example.Project.Service;
 
 import com.example.Project.Model.Recipe;
-import com.example.Project.Model.User;
 import com.example.Project.dao.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class RecipeService implements IRecipeService {
     public Recipe save(Recipe recipe) {
         return recipeDao.save(recipe);
     }
+
 
     @Override
     public void deleteById(int id) {

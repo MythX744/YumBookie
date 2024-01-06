@@ -35,10 +35,7 @@ public class RecipeController {
 
     @PostMapping("/addRecipe")
     public String addRecipe(@ModelAttribute("recipe") Recipe recipe, Model model, @RequestParam("image") MultipartFile file)
-            throws IOException, SerialException, SQLException{
-        byte[] bytes = file.getBytes();
-        Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
-        recipe.setImage(blob);
+            throws IOException{
         recipeService.save(recipe);
         model.addAttribute("message", "Created successfully");
         return "redirect:/navigation/home";

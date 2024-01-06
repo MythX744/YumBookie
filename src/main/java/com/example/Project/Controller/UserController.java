@@ -72,7 +72,7 @@ public class UserController {
             return "redirect:/navigation/home";
         } else {
             System.out.println("Invalid credentials");
-            return "redirect:/User/login?error=true";
+            return "redirect:/User/loadLogin";
         }
     }
 
