@@ -57,4 +57,9 @@ public class RecipeService implements IRecipeService {
     public List<Recipe> findByCategory(String category) {
         return recipeDao.findByCategory(category);
     }
+
+    @Override
+    public List<Recipe> getTrendingRecipes(){
+        return recipeDao.findTrendingRecipes();
+    }
 }

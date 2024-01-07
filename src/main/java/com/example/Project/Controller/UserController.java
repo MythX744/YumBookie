@@ -61,7 +61,7 @@ public class UserController {
         String email = user.getEmail();
         String password = user.getPassword();
         if (userService.validateUser(email, password)) {
-            session.setAttribute("username", user);
+            session.setAttribute("user", user);
             return "redirect:/navigation/home";
         } else {
             System.out.println("Invalid credentials");

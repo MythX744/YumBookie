@@ -12,4 +12,5 @@ public interface IRecipeService {
     void deleteById(int id);
     List<Recipe> findByUser(User user);
     List<Recipe> findByCategory(String category);
+    List<Recipe> getTrendingRecipes();
 }
