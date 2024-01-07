@@ -198,10 +198,13 @@ select {
     outline: none;
 }
 
-#recipe-card-container{
-    margin-top: 230px;
+#recipe-card-container {
+    margin-top: 20px;
     margin-left: 30px;
     padding: 5px;
+}
+.recipe-card-wrapper{
+    margin: 230px 0 0 0;
 }
 
 .recipe-card {
@@ -245,7 +248,7 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: -60px;
+    margin-top: -20px;
 }
 
 #btnss{

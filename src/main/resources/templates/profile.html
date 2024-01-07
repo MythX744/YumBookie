@@ -53,27 +53,29 @@
           </form>
         </div>
       </div>
-      <div th:each="recipe : ${recipes}" id="recipe-card-container">
-        <div class="recipe-card" >
-          <div class="image-placeholder">
-            <img src="/static/RecipeImages/BBQ.jpg" alt="Recipe image" />
-          </div>
-          <div class="recipe-info">
-            <div id="firstline">
-              <h2 th:text="${recipe.title}">ddd</h2>
-              <div id="btnss">
-                <button id="editbtn">Edit</button>
-                <button id="deletebtn">Delete</button>
-              </div>
+      <div class="recipe-card-wrapper">
+        <div th:each="recipe : ${recipes}" id="recipe-card-container">
+          <div class="recipe-card" >
+            <div class="image-placeholder">
+              <img src="/static/RecipeImages/BBQ.jpg" alt="Recipe image" />
             </div>
-            <p th:text="'Category: ' + ${recipe.category}"></p>
-            <div class="rating">
+            <div class="recipe-info">
+              <div id="firstline">
+                <h2 th:text="${recipe.title}">ddd</h2>
+                <div id="btnss">
+                  <button id="editbtn">Edit</button>
+                  <button id="deletebtn">Delete</button>
+                </div>
+              </div>
+              <p th:text="'Category: ' + ${recipe.category}"></p>
               <div class="rating">
-                <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
-                <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
-                <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
-                <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
-                <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                <div class="rating">
+                  <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
+                  <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
+                  <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
+                  <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
+                  <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                </div>
               </div>
             </div>
           </div>
