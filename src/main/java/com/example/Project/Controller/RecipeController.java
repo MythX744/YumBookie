@@ -40,7 +40,7 @@ public class RecipeController {
     }
 
     @PostMapping("/addRecipe")
-    public String addRecipe(@ModelAttribute Recipe recipe, @RequestParam("image") MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session) {
+    public String addRecipe(@ModelAttribute Recipe recipe, @RequestParam("images") MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session) {
         List<String> fileNames = new ArrayList<>();
         User user = (User) session.getAttribute("user");
         // Process each image file
