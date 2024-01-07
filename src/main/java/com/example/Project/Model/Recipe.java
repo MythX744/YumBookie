@@ -183,7 +183,7 @@ public class Recipe {
                 ", description='" + description + '\'' +
                 ", ingredients='" + ingredients + '\'' +
                 ", stepPreparation='" + stepPreparation + '\'' +
-                ", image=" + image +
+                ", image='" + image + '\'' +
                 ", category='" + category + '\'' +
                 ", comments=" + comments +
                 ", favorites=" + favorites +

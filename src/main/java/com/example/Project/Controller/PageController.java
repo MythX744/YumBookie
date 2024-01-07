@@ -1,13 +1,15 @@
 package com.example.Project.Controller;
 import com.example.Project.Model.Recipe;
+import com.example.Project.Model.User;
 import com.example.Project.Service.IRecipeService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/navigation")
@@ -57,8 +59,22 @@ public class PageController {
         return "allrecipes";
     }
 
-    @GetMapping("/User/loadProfile")
-    public String LoadProfile(Model theModel){
+    /*@GetMapping("/loadProfile")
+    public String showProfile(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        //List<Recipe> recipes = recipeService.findByUserID(user.getIdUser());
+        System.out.println(user.getIdUser());
+        //model.addAttribute("recipes", recipes);
+        model.addAttribute("user", user);
+        return "profile";
+    }*/
+
+    @GetMapping("/loadProfile")
+    public String getRecipes(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        List<Recipe> recipes = recipeService.findByUser(user);
+        model.addAttribute("user", user);
+        model.addAttribute("recipes", recipes);
         return "profile";
     }
 
@@ -68,5 +84,6 @@ public class PageController {
         model.addAttribute("recipes", recipes);
         return "allrecipes";
     }
+
 
 }

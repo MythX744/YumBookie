@@ -11,17 +11,18 @@ import com.example.Project.dao.UserDao;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping("/User")
 public class UserController {
 
@@ -33,20 +34,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/loadProfile")
-    public String showProfile(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        Set<Recipe> recipes = user.getRecipes();
-        model.addAttribute("recipes", recipes);
-        model.addAttribute("user", user);
-        return "profile";
-    }
-
 
     @PostMapping("/profile")
     public User updateUser(@ModelAttribute("user") User user, Model model) {
         userService.update(user);
         return user;
+    }
+
+    @GetMapping("/loadUsers")
+    public String showUsers(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        return "users";
+    }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        userService.deleteById(id);
+        return "redirect:/User/loadUsers";
     }
 
     @GetMapping("/loadLogin")
@@ -57,11 +62,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(HttpSession session, @ModelAttribute("user") User user) {
+    public String login(HttpSession session, User user) {
         String email = user.getEmail();
         String password = user.getPassword();
-        if (userService.validateUser(email, password)) {
-            session.setAttribute("username", user);
+        if ((user = userService.validateUser(email, password)) != null) {
+            session.setAttribute("user", user);
+            //System.out.println(user);
             return "redirect:/navigation/home";
         } else {
             System.out.println("Invalid credentials");
