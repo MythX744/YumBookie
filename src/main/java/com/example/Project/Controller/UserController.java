@@ -34,11 +34,18 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    @PostMapping("/profile")
-    public User updateUser(@ModelAttribute("user") User user, Model model) {
+    @PostMapping("/updateUser/{id}")
+    public String updateUser(@RequestParam("name") String name,
+                             @RequestParam("password") String password, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if(!name.isEmpty()){
+            user.setName(name);
+        }
+        if(!password.isEmpty()){
+            user.setPassword(password);
+        }
         userService.update(user);
-        return user;
+        return "redirect:/navigation/loadProfile";
     }
 
     @GetMapping("/loadUsers")
