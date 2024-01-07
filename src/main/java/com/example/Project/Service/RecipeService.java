@@ -3,25 +3,20 @@ package com.example.Project.Service;
 import com.example.Project.Model.Recipe;
 import com.example.Project.Model.User;
 import com.example.Project.dao.RecipeDao;
-import com.example.Project.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collections;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class RecipeService implements IRecipeService {
     private RecipeDao recipeDao;
-    private UserDao userDao;
     @Autowired
     public RecipeService(RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
-    }
-    public RecipeService(UserDao userDao) {
-        this.userDao = userDao;
     }
     @Override
     public List<Recipe> findAll() {
@@ -29,18 +24,23 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public List<Recipe> findByUser(User user) {
+        return recipeDao.findByUser(user);
+    }
+
+    @Override
     public Recipe findById(int id) {
-            Optional<Recipe> result = recipeDao.findById(id);
+        Optional<Recipe> result = recipeDao.findById(id);
 
-            Recipe recipe = null;
+        Recipe recipe = null;
 
-            if (result.isPresent()) {
-                recipe = result.get();
-            }
-            else {
-                throw new RuntimeException("Did not find employee id - " + id);
-            }
-            return recipe;
+        if (result.isPresent()) {
+            recipe = result.get();
+        }
+        else {
+            throw new RuntimeException("Did not find employee id - " + id);
+        }
+        return recipe;
     }
 
     @Override
@@ -59,8 +59,7 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
-    public List<Recipe> findByUser(User user) {
-        return recipeDao.findByUser(user);
+    public List<Recipe> getTrendingRecipes(){
+        return recipeDao.findTrendingRecipes();
     }
-
 }

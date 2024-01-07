@@ -84,17 +84,8 @@ public class RecipeController {
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         return fileName;
     }
-    @GetMapping("/showUserRecipes")
-    public String showUserRecipes(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        if (user != null) {
-            List<Recipe> userRecipes = recipeService.findByUser(user);
-            model.addAttribute("recipes", userRecipes);
-            return "profile";
-        } else {
-            return "redirect:/User/loadLogin";
-        }
-    }
+
+
     @GetMapping("/showAllRecipes")
     public String showAllRecipes(Model model) {
         List<Recipe> recipes = recipeService.findAll();
