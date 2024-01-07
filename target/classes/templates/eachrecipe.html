@@ -9,77 +9,77 @@
     <link rel="stylesheet" th:href="@{base.css}" />
 </head>
 <body>
-<div id="content-wrapBase">
-    <div th:replace="fragments/header :: header" > </div>
-    <main id="mainBase">
-        <div class="upload-container">
-            <h1>Recipe TITLE</h1>
-            <p style="font-size: 20px;">Category : VARIABLE </p>
-            <div class="gallery-wrapper">
-                <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
+<form th:action="@{/Recipe/eachRecipe/recipe.id}" th:object="${recipe}" method="post" enctype="multipart/form-data">
+    <div id="content-wrapBase">
+        <div th:replace="fragments/header :: header" > </div>
+        <main id="mainBase">
+            <div class="upload-container">
+                <h1 th:text="${recipe.title}">Recipe TITLE</h1>
+                <p style="font-size: 20px;" th:text="'Category : ' + ${recipe.category}">Category : VARIABLE </p>
+                <div class="gallery-wrapper">
+                    <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
 
-                <div class="horizontal-scroll-container" id="image-scroll-container">
-                    <!-- Images will be dynamically inserted here -->
+                    <div class="horizontal-scroll-container" id="image-scroll-container">
+                        <!-- Images will be dynamically inserted here -->
+                    </div>
+
+                    <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
                 </div>
 
-                <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
+                <input type="file" id="file-input" multiple accept="image/*" style="display:none;">
+                <label for="file-input">Upload Images</label>
             </div>
+            <div class="container">
+                <div class="recipe-details-container">
+                    <h2>Recipe Details</h2>
+                    <table class="recipe-info-table">
+                        <tr>
+                            <td><i class="fa fa-clock"></i> Preparation:</td>
+                            <td><input type="text" th:value="${recipe.preparation}" placeholder="in mins"></td>
+                            <td class="rd">mins</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-fire"></i> Cooking:</td>
+                            <td><input type="text" th:value="${recipe.cooking}" placeholder="in mins"></td>
+                            <td class="rd">mins</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-users"></i> Servings:</td>
+                            <td><input type="text" th:value="${recipe.serving}" placeholder="people"></td>
+                            <td class="rd">people</td>
+                        </tr>
+                    </table>
+                </div>
 
-            <input type="file" id="file-input" multiple accept="image/*" style="display:none;">
-            <label for="file-input">Upload Images</label>
-        </div>
-        <div class="container">
-            <div class="recipe-details-container">
-                <h2>Recipe Details</h2>
-                <table class="recipe-info-table">
-                    <tr>
-                        <td><i class="fa fa-clock"></i> Preparation:</td>
-                        <td><input type="text" placeholder="in mins"></td>
-                        <td id="rd">mins</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-fire"></i> Cooking:</td>
-                        <td><input type="text" placeholder="in mins"></td>
-                        <td id="rd">mins</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fa fa-users"></i> Servings:</td>
-                        <td><input type="text" placeholder="people"></td>
-                        <td id="rd">people</td>
-                    </tr>
-                </table>
+                <div class="description-container">
+                    <h2>Recipe description</h2>
+                    <textarea th:text="${recipe.description}" placeholder="Enter your description here"></textarea>
+                </div>
             </div>
+            <div class="container1">
+                <div class="ingredients-container">
+                    <h2>Ingredients</h2>
+                    <p th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}">ingredients</p>
+                </div>
 
-            <div class="description-container">
-                <h2>Recipe description</h2>
-                <textarea placeholder="Enter your description here"></textarea>
+                <!-- Cooking Steps Section -->
+                <div class="cooking-container">
+                    <h2>Cooking steps</h2>
+                    <p th:each="step : ${recipe.stepPreparation}" th:text="${step}">cooking steps</p>
+                </div>
             </div>
-        </div>
-        <div class="container1">
-            <div class="ingredients-container">
-                <h2>Ingredients</h2>
-                <p>ingredients</p>
-            </div>
-
-            <!-- Cooking Steps Section -->
-            <div class="cooking-container">
-                <h2>Cooking steps</h2>
-                <p>cooking steps</p>
-            </div>
-        </div>
-        <div id="comments">
-            <h1 id="gg">Comments:</h1>
-            <form action="" method="post">
+            <div id="comments">
+                <h1 id="gg">Comments:</h1>
                 <button type="submit" id="pbtn">Add comment</button>
-            </form>
-            <div class="cooking-container1">
-                <p><b>Username</b></p>
-                <p id="commentt">Comment text </p>
+                <div class="cooking-container1">
+                    <p><b>Username</b></p>
+                    <p id="commentt">Comment text </p>
+                </div>
             </div>
-        </div>
-    </main>
-    <div th:replace="fragments/footer :: footer" > </div>
-</div>
+        </main>
+        <div th:replace="fragments/footer :: footer" > </div>
+    </div>
+</form>
 </body>
 <script>
     function handleKeyPress(e, listId) {

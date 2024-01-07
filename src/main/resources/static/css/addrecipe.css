@@ -144,12 +144,11 @@ select {
     margin: 0 70px; /* Centers the flex container */
 }
 
-.recipe-details-container, .description-container {
+.description-container {
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: white;
     border-radius: 10px;
-    margin: 5px;
     height: fit-content; /* Fit the height to the content */
 }
 
@@ -160,8 +159,13 @@ h2 {
 
 /* Recipe Details Styles */
 .recipe-details-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 10px;
+    margin: 5px;
     padding: 20px 10px; /* Increase padding for larger inner space */
     width:35%;
+    height: 100%;
 }
 
 .recipe-info-table {
@@ -203,12 +207,11 @@ h2 {
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center children horizontally */
     justify-content: center; /* Center children vertically */
-    width: 300px; /* Adjust width as needed */
     background: white;
     padding: 10px 50px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
+    margin: 5px;
     height: fit-content; /* Adjust height based on content */
     width: 65%;
 }

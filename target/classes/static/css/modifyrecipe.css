@@ -5,6 +5,61 @@ body, html {
     background: #fcfcfc;
 }
 
+.gallery-wrapper {
+    position: relative;
+    width: 80%; /* Set the width you desire for the gallery */
+    max-width: 960px; /* Maximum width of the gallery */
+    margin: 150px auto;
+}
+
+.horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#scroll-left, #scroll-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #EB5D21;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    font-size: 2em;
+    margin: 0 -10%;
+}
+
+#scroll-left:hover, #scroll-right:hover {
+    opacity: 1;
+}
+
+#scroll-left {
+    left: 0;
+}
+
+#scroll-right {
+    right: 0;
+}
+
+.horizontal-scroll-container img {
+    max-height: 250px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    margin: 0 5px;
+    border: 1px solid none;
+}
+
+/* Hide scrollbar */
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
 .upload-container {
     text-align: center;
     margin: 60px 100px;
@@ -144,11 +199,12 @@ select {
     margin: 0 70px; /* Centers the flex container */
 }
 
-.description-container {
+.recipe-details-container, .description-container {
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background: white;
     border-radius: 10px;
+    margin: 5px;
     height: fit-content; /* Fit the height to the content */
 }
 
@@ -159,13 +215,8 @@ h2 {
 
 /* Recipe Details Styles */
 .recipe-details-container {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: white;
-    border-radius: 10px;
-    margin: 5px;
     padding: 20px 10px; /* Increase padding for larger inner space */
     width:35%;
-    height: 100%;
 }
 
 .recipe-info-table {
@@ -207,11 +258,12 @@ h2 {
     flex-direction: column; /* Stack children vertically */
     align-items: center; /* Center children horizontally */
     justify-content: center; /* Center children vertically */
+    width: 300px; /* Adjust width as needed */
     background: white;
     padding: 10px 50px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 5px;
+    margin: 10px;
     height: fit-content; /* Adjust height based on content */
     width: 65%;
 }
@@ -324,6 +376,7 @@ h2 {
     box-sizing: border-box;
     flex-shrink: 0;
     font-weight: bold;
+    margin-bottom: 40px;
 }
 
 #pbtn:hover{

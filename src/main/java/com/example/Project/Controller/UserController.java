@@ -32,6 +32,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ModelAttribute("isLoggedIn")
+    public boolean isLoggedIn(HttpSession session) {
+        return session.getAttribute("user") != null;
+    }
+
     /*
     @GetMapping("/profile")
     public String showprofile(Model model, @ModelAttribute("user")User user) {
@@ -69,7 +74,7 @@ public class UserController {
         String email = user.getEmail();
         String password = user.getPassword();
         if (userService.validateUser(email, password)) {
-            session.setAttribute("username", email);
+            session.setAttribute("user",user);
             return "redirect:/navigation/home";
         } else {
             System.out.println("Invalid credentials");

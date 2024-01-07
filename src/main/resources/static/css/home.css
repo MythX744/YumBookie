@@ -347,7 +347,7 @@ button:hover {
     bottom: 0;
     right: 0;
     width: 100%;
-    height: 20px;
+    height: 40px;
     background: linear-gradient(to bottom, transparent, #FFFFFF 100%);
     pointer-events: none;
 }
