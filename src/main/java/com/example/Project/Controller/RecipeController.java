@@ -84,7 +84,6 @@ public class RecipeController {
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         return fileName;
     }
-
     @GetMapping("/showUserRecipes")
     public String showUserRecipes(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");

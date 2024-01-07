@@ -13,7 +13,6 @@ public interface RecipeDao extends JpaRepository<Recipe, Integer> {
     List<Recipe> findTrendingRecipes();
 
     List<Recipe> findByUser(User user);
-
     List<Recipe> findByCategory(String category);
 
 }

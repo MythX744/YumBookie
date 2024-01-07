@@ -1,5 +1,6 @@
 package com.example.Project.Service;
 
+import com.example.Project.Model.Recipe;
 import com.example.Project.Model.User;
 import com.example.Project.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,6 @@ public class UserService implements IUserService{
     @Override
     public User findById(int id) {
             Optional<User> result = userDao.findById(id);
-
             User user = null;
 
             if (result.isPresent()) {
@@ -52,15 +52,16 @@ public class UserService implements IUserService{
         userDao.deleteById(id);
     }
 
-    public boolean validateUser(String email, String password) {
+    public User validateUser(String email, String password) {
         User user = userDao.findByEmail(email).orElse(null);
         if (user != null && user.getPassword().equals(password)){
-            return true;
+            return user;
         }
-        return false;
+        return null;
     }
     public void update(User user) {
         userDao.save(user);
     }
+
 
 }

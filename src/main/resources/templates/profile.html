@@ -11,7 +11,7 @@
     <!-- Sign Up Form Content -->
     <div class="form-container">
       <a id="home" th:href="@{/navigation/home}">Home</a>
-      <form th:action="@{/User/profile}" method="post" th:object="${user}">
+      <form th:action="@{/User/updateUser/{id}(id=${user.idUser})}" method="post" th:object="${user}">
         <div class="profile-picture">
         </div>
         <div id="formulaire">
@@ -40,7 +40,7 @@
     <div class="container">
       <div class="fixed-header">
         <h1 style="font-size: 35px;">All Recipies:</h1>
-        <p style=" margin-left: 20px; font-size: 20px">N recipes published</p>
+        <p style=" margin-left: 20px; font-size: 20px" th:text="${#sets.size(recipes)} + ' recipes published'"></p>
         <div class="controls">
           <form method="post"> <!--th:action="@{/Recipe/filtre}" -->
             <select name="filter" id="filter">
@@ -53,20 +53,20 @@
           </form>
         </div>
       </div>
-      <div id="recipe-card-container">
-        <div class="recipe-card" th:each="recipe : ${recipes}">
+      <div th:each="recipe : ${recipes}" id="recipe-card-container">
+        <div class="recipe-card" >
           <div class="image-placeholder">
-            <img th:src="" alt="Recipe image" />
+            <img src="/static/RecipeImages/BBQ.jpg" alt="Recipe image" />
           </div>
           <div class="recipe-info">
             <div id="firstline">
-              <h2 th:text="*{recipe.title}">ddd</h2>
+              <h2 th:text="${recipe.title}">ddd</h2>
               <div id="btnss">
                 <button id="editbtn">Edit</button>
                 <button id="deletebtn">Delete</button>
               </div>
             </div>
-            <p th:text="'Category: ' + *{recipe.category}"></p>
+            <p th:text="'Category: ' + ${recipe.category}"></p>
             <div class="rating">
               <div class="rating">
                 <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>

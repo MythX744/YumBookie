@@ -99,6 +99,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", recipes=" + recipes +
+                ", comments=" + comments +
+                ", favorites=" + favorites +
                 '}';
     }
 }

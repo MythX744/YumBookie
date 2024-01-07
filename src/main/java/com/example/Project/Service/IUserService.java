@@ -10,6 +10,6 @@ public interface IUserService {
     User findById(int id);
     User save(User user);
     void deleteById(int id);
-    boolean validateUser(String email, String password);
+    User validateUser(String email, String password);
     void update(User user);
 }
