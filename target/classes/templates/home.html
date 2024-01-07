@@ -19,7 +19,13 @@
     </form>
     <h1>Trending</h1>
     <div id="grid-container" class="grid-container">
-      <!-- Recipe cards will be added here -->
+        <div th:each="recipe : ${trendingRecipes}" class="recipe-card">
+          <div class="recipe-image"></div>
+          <img src="/images/isfavorite.png" class="favorite-button" alt="Add to Favorites">
+          <h2 class="recipe-title" th:text="${recipe.title}"></h2>
+          <p class="recipe-user" th:text="'By ' + ${recipe.user.name}"></p>
+          <div class="recipe-rating" th:text="${recipe.rating}+'★'"></div>
+        </div>
     </div>
     <div class="description-section">
       <div class="description">
@@ -68,50 +74,5 @@
 </html>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const recipes = [
-      //test
-      { title: 'Recipe 1', user: 'User 1', rating: 5 }, //f blast user atkoun name dial table user
-      { title: 'Recipe 2', user: 'User 2', rating: 4 },
-      { title: 'Recipe 3', user: 'User 3', rating: 3 }
-    ];
 
-    const container = document.getElementById('grid-container');
-
-    if(recipes.length === 0) {
-      container.innerHTML = '<p>No recipes available</p>';
-    }else {
-      recipes.forEach(recipe => {
-        container.innerHTML += `
-              <a href="/Recipe/eachRecipe/${recipe.id_recipe}" class="recipe-card-link">
-                <div class="recipe-card">
-                    <input type="hidden" name="recipe_id" value="${recipe.id_recipe}">
-                    <div class="recipe-image"></div>
-                     <img src="/images/isfavorite.png" class="favorite-button" alt="Add to Favorites">
-                    <h2 class="recipe-title">${recipe.title}</h2>
-                    <p class="recipe-user">By ${recipe.user}</p>
-                    <div class="recipe-rating">${'★'.repeat(recipe.rating)}</div>
-                </div>
-              </a>
-          `;
-      });}
-
-    ////////////////////
-
-    favoriteButtons.forEach(button => {
-      const recipeId = button.closest('.recipe-card').querySelector('input[name="recipe_id"]').value;
-      CheckIsFavorite(recipeId);
-
-      button.addEventListener('click', function() {
-
-      });
-    });
-
-    function CheckIsFavorite(recipeId) {
-    }
-
-    function updateFavorites(recipeId, isFavorite) {
-    }
-
-    });
 </script>

@@ -28,6 +28,11 @@ public class PageController {
             recipes = recipes.subList(0, 3); // Limit to first 3 recipes
         }
         theModel.addAttribute("recipes", recipes);
+        List<Recipe> trendingRecipes = recipeService.getTrendingRecipes();
+        if (trendingRecipes.size() > 3) {
+            trendingRecipes = trendingRecipes.subList(0, 3); // Limit to first 3 recipes
+        }
+        theModel.addAttribute("trendingRecipes", trendingRecipes);
         return "home";
     }
 

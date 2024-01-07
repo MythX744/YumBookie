@@ -41,28 +41,35 @@ public class RecipeController {
         return "addRecipe";
     }
     @PostMapping("/addRecipe")
-    public String addRecipe(HttpSession session, @ModelAttribute("recipe") Recipe recipe, Model model, @RequestParam("image") MultipartFile file) throws IOException{
-        String userEmail = (String) session.getAttribute("userEmail");
-        User user = userService.findByEmail(userEmail);
+    public String addRecipe(HttpSession session, @ModelAttribute("recipe") Recipe recipe, Model model, @RequestParam("image") MultipartFile file) throws IOException {
+        User user = (User) session.getAttribute("user");
         if (user == null) {
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-            recipe.setImage(fileName);
-            Recipe savedRecipe = recipeService.save(recipe);
-            String uploadDir = "RecipeImages/" + savedRecipe.getIdRecipe();
-            Path uploadPath = Paths.get(uploadDir);
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-            try (InputStream inputStream = file.getInputStream()) {
-                Path filePath = uploadPath.resolve(fileName);
-                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                throw new IOException("Could not save uploaded file: " + fileName);
-            }
-            model.addAttribute("message", "Created successfully");
-            return "redirect:/navigation/home";
-        }else {
             return "redirect:/User/loadLogin";
+        }
+        if (!file.isEmpty()) {
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            String uploadDir = "RecipeImages/" + recipe.getIdRecipe();
+            // Save the file
+            saveFile(uploadDir, fileName, file);
+            // Update the recipe object with the path or filename
+            recipe.setImage(fileName);
+        }
+        // Save the recipe to the database
+        Recipe savedRecipe = recipeService.save(recipe);
+        // Additional logic and return statement
+        model.addAttribute("message", "Created successfully");
+        return "redirect:/navigation/home";
+    }
+    private void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+        try (InputStream inputStream = multipartFile.getInputStream()) {
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new IOException("Could not save uploaded file: " + fileName, e);
         }
     }
 
