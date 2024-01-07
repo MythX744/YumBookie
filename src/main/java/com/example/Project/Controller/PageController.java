@@ -64,16 +64,6 @@ public class PageController {
         return "allrecipes";
     }
 
-    /*@GetMapping("/loadProfile")
-    public String showProfile(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        //List<Recipe> recipes = recipeService.findByUserID(user.getIdUser());
-        System.out.println(user.getIdUser());
-        //model.addAttribute("recipes", recipes);
-        model.addAttribute("user", user);
-        return "profile";
-    }*/
-
     @GetMapping("/loadProfile")
     public String getRecipes(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");

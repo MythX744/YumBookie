@@ -35,17 +35,17 @@
                     <table class="recipe-info-table">
                         <tr>
                             <td><i class="fa fa-clock"></i> Preparation:</td>
-                            <td><input type="text" th:value="${recipe.preparation}" placeholder="in mins"></td>
+                            <td><input type="text" th:value="${recipe.preparation}" placeholder="in mins" disabled></td>
                             <td class="rd">mins</td>
                         </tr>
                         <tr>
                             <td><i class="fa fa-fire"></i> Cooking:</td>
-                            <td><input type="text" th:value="${recipe.cooking}" placeholder="in mins"></td>
+                            <td><input type="text" th:value="${recipe.cooking}" placeholder="in mins" disabled></td>
                             <td class="rd">mins</td>
                         </tr>
                         <tr>
                             <td><i class="fa fa-users"></i> Servings:</td>
-                            <td><input type="text" th:value="${recipe.serving}" placeholder="people"></td>
+                            <td><input type="text" th:value="${recipe.serving}" placeholder="people" disabled></td>
                             <td class="rd">people</td>
                         </tr>
                     </table>
@@ -53,7 +53,7 @@
 
                 <div class="description-container">
                     <h2>Recipe description</h2>
-                    <textarea th:text="${recipe.description}" placeholder="Enter your description here"></textarea>
+                    <textarea th:text="${recipe.description}" placeholder="Enter your description here" disabled></textarea>
                 </div>
             </div>
             <div class="container1">
