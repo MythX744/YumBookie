@@ -68,12 +68,11 @@ public class RecipeController {
     }
     @GetMapping("/showUserRecipes")
     public String showUserRecipes(HttpSession session, Model model) {
-        String userEmail = (String) session.getAttribute("userEmail");
-        User user = userService.findByEmail(userEmail);
+        User user = (User) session.getAttribute("user");
         if (user != null) {
             List<Recipe> userRecipes = recipeService.findByUser(user);
             model.addAttribute("recipes", userRecipes);
-            return "userRecipes";
+            return "profile";
         } else {
             return "redirect:/User/loadLogin";
         }
