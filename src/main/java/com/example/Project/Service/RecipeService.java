@@ -50,6 +50,6 @@ public class RecipeService implements IRecipeService {
 
     @Override
     public void deleteById(int id) {
-
+        recipeDao.deleteById(id);
     }
 }

@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
-@SessionAttributes("username")
+@SessionAttributes("user")
 @RequestMapping("/User")
 public class UserController {
 
@@ -32,34 +33,20 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ModelAttribute("isLoggedIn")
-    public boolean isLoggedIn(HttpSession session) {
-        return session.getAttribute("user") != null;
+    @GetMapping("/loadProfile")
+    public String showProfile(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Set<Recipe> recipes = user.getRecipes();
+        model.addAttribute("recipes", recipes);
+        model.addAttribute("user", user);
+        return "profile";
     }
 
-    /*
-    @GetMapping("/profile")
-    public String showprofile(Model model, @ModelAttribute("user")User user) {
-        User existingUser = userDao1.findById(user.getIdUser());
-        model.addAttribute("fullName", existingUser.getName());
-        model.addAttribute("email", existingUser.getEmail());
-        model.addAttribute("password", existingUser.getPassword());
-        return "addrecipe";
-    }
-    */
 
     @PostMapping("/profile")
     public User updateUser(@ModelAttribute("user") User user, Model model) {
-        //still needs some changes like the getId method,
-        User existingUser = userService.findById(user.getIdUser());
-        if (existingUser != null) {
-            existingUser.setName(user.getName());
-            existingUser.setEmail(user.getPassword());
-            return userService.save(existingUser);
-        }
-        else{
-            return null;
-        }
+        userService.update(user);
+        return user;
     }
 
     @GetMapping("/loadLogin")
@@ -74,7 +61,7 @@ public class UserController {
         String email = user.getEmail();
         String password = user.getPassword();
         if (userService.validateUser(email, password)) {
-            session.setAttribute("user",user);
+            session.setAttribute("username", user);
             return "redirect:/navigation/home";
         } else {
             System.out.println("Invalid credentials");
@@ -89,7 +76,7 @@ public class UserController {
     @PostMapping("/signup")
     public String saveUser(@ModelAttribute("user") User user, Model model){
         userService.save(user);
-        return "login";
+        return "redirect:/User/loadLogin";
     }
 
     @GetMapping("/logout")

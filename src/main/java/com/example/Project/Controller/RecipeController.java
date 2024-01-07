@@ -27,10 +27,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/Recipe")
 public class RecipeController {
-
     private IRecipeService recipeService;
     private IUserService userService;
-
     @Autowired
     public RecipeController(IRecipeService recipeService){
         this.recipeService=recipeService;
@@ -38,13 +36,10 @@ public class RecipeController {
     public RecipeController(IUserService userService){
         this.userService=userService;
     }
-
-
     @GetMapping("/loadAddRecipe")
     public String loadAddRecipe(@ModelAttribute("recipe") Recipe recipe){
         return "addRecipe";
     }
-
     @PostMapping("/addRecipe")
     public String addRecipe(HttpSession session, @ModelAttribute("recipe") Recipe recipe, Model model,
                             @RequestParam("image") MultipartFile file) throws IOException{
@@ -54,7 +49,7 @@ public class RecipeController {
             String fileName = StringUtils.cleanPath(file.getOriginalFilename());
             recipe.setImage(fileName);
             Recipe savedRecipe = recipeService.save(recipe);
-            String uploadDir = "recipe-photos/" + savedRecipe.getIdRecipe();
+            String uploadDir = "RecipeImages/" + savedRecipe.getIdRecipe();
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
@@ -71,14 +66,6 @@ public class RecipeController {
             return "redirect:/User/loadLogin";
         }
     }
-
-    @PostMapping("/profile")
-    public String listUserRecipes(Model model) {
-        List<Recipe> recipes = recipeService.findAll();
-        model.addAttribute("recipes", recipes);
-        return "profile";
-    }
-
     @GetMapping("/showUserRecipes")
     public String showUserRecipes(HttpSession session, Model model) {
         String userEmail = (String) session.getAttribute("userEmail");
@@ -86,19 +73,17 @@ public class RecipeController {
         if (user != null) {
             List<Recipe> userRecipes = recipeService.findByUser(user);
             model.addAttribute("recipes", userRecipes);
-            return "userRecipes"; // The name of the Thymeleaf template to display the recipes
+            return "userRecipes";
         } else {
-            return "redirect:/User/loadLogin"; // Redirect to login if the user is not found
+            return "redirect:/User/loadLogin";
         }
     }
-
     @GetMapping("/showAllRecipes")
-    public List<Recipe> showAllRecipes(Model model) {
+    public String showAllRecipes(Model model) {
         List<Recipe> recipes = recipeService.findAll();
         model.addAttribute("recipes", recipes);
-        return recipes; // The name of the Thymeleaf template to display the recipes
+        return null;
     }
-
     @GetMapping("/eachRecipe/{id}")
     public String eachRecipe(@RequestParam("recipeId") int id, Model model){
         Recipe recipe = recipeService.findById(id);

@@ -11,4 +11,5 @@ public interface IUserService {
     User save(User user);
     void deleteById(int id);
     boolean validateUser(String email, String password);
+    void update(User user);
 }

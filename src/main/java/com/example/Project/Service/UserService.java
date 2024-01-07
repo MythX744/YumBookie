@@ -59,6 +59,8 @@ public class UserService implements IUserService{
         }
         return false;
     }
-
+    public void update(User user) {
+        userDao.save(user);
+    }
 
 }

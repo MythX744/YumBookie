@@ -42,7 +42,7 @@ public class Recipe {
     private int preparation;
 
     @Column(name = "rating")
-    private int rating;
+    private Double rating;
 
     public Recipe() {
     }
@@ -167,10 +167,10 @@ public class Recipe {
         this.preparation = preparation;
     }
 
-    public int getRating() {
+    public Double getRating() {
         return rating;
     }
-    public void setRating(int rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 

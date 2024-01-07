@@ -68,7 +68,29 @@ public class User {
         this.password = password;
     }
 
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
 
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Set<Favorite> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Favorite> favorites) {
+        this.favorites = favorites;
+    }
 
     @Override
     public String toString() {
