@@ -52,4 +52,9 @@ public class RecipeService implements IRecipeService {
     public void deleteById(int id) {
         recipeDao.deleteById(id);
     }
+
+    @Override
+    public List<Recipe> findByCategory(String category) {
+        return recipeDao.findByCategory(category);
+    }
 }

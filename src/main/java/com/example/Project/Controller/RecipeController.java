@@ -41,8 +41,7 @@ public class RecipeController {
         return "addRecipe";
     }
     @PostMapping("/addRecipe")
-    public String addRecipe(HttpSession session, @ModelAttribute("recipe") Recipe recipe, Model model,
-                            @RequestParam("image") MultipartFile file) throws IOException{
+    public String addRecipe(HttpSession session, @ModelAttribute("recipe") Recipe recipe, Model model, @RequestParam("image") MultipartFile file) throws IOException{
         String userEmail = (String) session.getAttribute("userEmail");
         User user = userService.findByEmail(userEmail);
         if (user == null) {

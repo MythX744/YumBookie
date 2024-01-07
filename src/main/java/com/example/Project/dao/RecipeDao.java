@@ -9,4 +9,5 @@ import java.util.List;
 public interface RecipeDao extends JpaRepository<Recipe, Integer> {
     List<Recipe> findByUser(User user);
 
+    List<Recipe> findByCategory(String category);
 }
