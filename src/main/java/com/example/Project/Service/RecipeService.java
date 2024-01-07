@@ -62,4 +62,5 @@ public class RecipeService implements IRecipeService {
     public List<Recipe> getTrendingRecipes(){
         return recipeDao.findTrendingRecipes();
     }
+
 }

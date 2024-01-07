@@ -24,7 +24,7 @@
           <span class="icon-placeholder"><i class="fa fa-image"></i></span>
           <p>You can drag files here to add them.</p>
         </div>
-        <input type="file" accept="image/*" id="file-input" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" onchange="updateFileList()" required="required">
+        <input type="file" accept="image/*" id="file-input" name="image" aria-describedby="inputGroupFileAddon04" aria-label="Upload" onchange="updateFileList()" required="required" multiple="multiple">
         <label for="file-input" class="file-input-label">Add Files</label>
       </div>
       <div class="file-display">
@@ -49,7 +49,7 @@
               <p class="p1">Choose the recipe category:</p>
             </td>
             <td>
-              <select th:field="*{category}" name="filter" id="filter">
+              <select th:field="*{category}" name="filter" id="filter" required>
                 <option disabled selected value="">Filtering Options</option>
                 <option value="Breakfast">Breakfast</option>
                 <option value="Lunch">Lunch</option>
@@ -85,17 +85,17 @@
       </div>
       <div class="description-container">
         <h2>Recipe description</h2>
-        <textarea th:field="*{description}" placeholder="Enter your description here"></textarea>
+        <textarea th:field="*{description}" placeholder="Enter your description here" required ></textarea>
       </div>
     </div>
     <div class="container1">
       <div class="description-container1">
         <h2>Recipe Ingredients</h2>
-        <textarea th:field="*{ingredients}" placeholder="Enter your ingredients here"></textarea>
+        <textarea th:field="*{ingredients}" placeholder="Enter your ingredients here" required ></textarea>
       </div>
       <div class="description-container1">
         <h2>Cooking steps</h2>
-        <textarea th:field="*{stepPreparation}" placeholder="Enter your cooking steps here"></textarea>
+        <textarea th:field="*{stepPreparation}" placeholder="Enter your cooking steps here" required ></textarea>
       </div>
     </div>
     <div id="publishbtn2">
@@ -175,7 +175,3 @@
   }
   document.addEventListener('DOMContentLoaded', updateFileList);
 </script>
-</html>
-
-</body>
-</html>

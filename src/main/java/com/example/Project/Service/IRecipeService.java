@@ -13,4 +13,5 @@ public interface IRecipeService {
     List<Recipe> findByUser(User user);
     List<Recipe> findByCategory(String category);
     List<Recipe> getTrendingRecipes();
+
 }

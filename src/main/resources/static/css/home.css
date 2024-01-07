@@ -81,6 +81,16 @@ button:hover {
     margin-bottom:130px;
 }
 
+.recipe-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.recipe-card-link > * {
+    pointer-events: none;
+}
+
 .recipe-card {
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -265,7 +275,16 @@ button:hover {
     display: flex;
     align-items: center;
     padding: 10px;
-    margin: 0px 0px 0px 100px;
+    margin: 0px 0px 20px 100px;
+}
+.recipe-list-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.recipe-list-link > * {
+    pointer-events: none;
 }
 .Recipe-list-image {
     width: 250px;

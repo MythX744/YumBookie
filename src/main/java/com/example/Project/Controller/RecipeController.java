@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,42 +38,53 @@ public class RecipeController {
     public RecipeController(IUserService userService){
         this.userService=userService;
     }
-    @GetMapping("/loadAddRecipe")
-    public String loadAddRecipe(@ModelAttribute("recipe") Recipe recipe){
-        return "addRecipe";
-    }
+
     @PostMapping("/addRecipe")
-    public String addRecipe(HttpSession session, @ModelAttribute("recipe") Recipe recipe, Model model, @RequestParam("image") MultipartFile file) throws IOException {
+    public String addRecipe(@ModelAttribute Recipe recipe, @RequestParam("image") MultipartFile[] files, RedirectAttributes redirectAttributes, HttpSession session) {
+        List<String> fileNames = new ArrayList<>();
         User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return "redirect:/User/loadLogin";
+        // Process each image file
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                try {
+                    String fileName = saveImageFile(file); // Save the image and get the file name
+                    fileNames.add(fileName); // Add file name to the list
+                } catch (IOException e) {
+                    // Handle the case where the image save fails
+                    redirectAttributes.addFlashAttribute("errorMessage", "Error saving image: " + file.getOriginalFilename());
+                    return "redirect:/navigation/loadAddRecipe"; // Redirect back to the form page
+                }
+            }
         }
-        if (!file.isEmpty()) {
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-            String uploadDir = "RecipeImages/" + recipe.getIdRecipe();
-            // Save the file
-            saveFile(uploadDir, fileName, file);
-            // Update the recipe object with the path or filename
-            recipe.setImage(fileName);
+
+        // Concatenate file names and set to the recipe's image attribute
+        String imageFilesConcatenated = String.join(",", fileNames); // Concatenate with comma delimiter
+        recipe.setImage(imageFilesConcatenated);
+        recipe.setUser(user); // Set the user
+        // Save the recipe object
+        try {
+            recipeService.save(recipe);
+        } catch (Exception e) {
+
+            redirectAttributes.addFlashAttribute("errorMessage", "Error saving recipe");
+            return "redirect:/navigation/loadAddRecipe"; // Redirect back to the form page
         }
-        // Save the recipe to the database
-        Recipe savedRecipe = recipeService.save(recipe);
-        // Additional logic and return statement
-        model.addAttribute("message", "Created successfully");
-        return "redirect:/navigation/home";
+        redirectAttributes.addFlashAttribute("successMessage", "Recipe added successfully!");
+        return "redirect:/navigation/home"; // Redirect to a success page
     }
-    private void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
+
+    private String saveImageFile(MultipartFile file) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String uploadDir = "src/main/resources/static/RecipeImages/"; // Adjust the path as needed
         Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)) {
+        if (!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }
-        try (InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new IOException("Could not save uploaded file: " + fileName, e);
-        }
+        Path filePath = uploadPath.resolve(fileName);
+        Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+        return fileName;
     }
+
     @GetMapping("/showUserRecipes")
     public String showUserRecipes(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
@@ -88,12 +101,6 @@ public class RecipeController {
         List<Recipe> recipes = recipeService.findAll();
         model.addAttribute("recipes", recipes);
         return null;
-    }
-    @GetMapping("/eachRecipe/{id}")
-    public String eachRecipe(@RequestParam("recipeId") int id, Model model){
-        Recipe recipe = recipeService.findById(id);
-        model.addAttribute("recipe", recipe);
-        return "eachRecipe";
     }
 
 }
