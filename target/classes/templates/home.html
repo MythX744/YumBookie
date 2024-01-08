@@ -19,7 +19,11 @@
     <div id="grid-container" class="grid-container">
         <div th:each="recipe : ${trendingRecipes}" class="recipe-card">
           <a th:href="@{/navigation/loadEachRecipe(id=${recipe.idRecipe})}" class="recipe-card-link">
-          <div class="recipe-image"></div>
+          <div class="recipe-image">
+            <img th:if="${!#strings.isEmpty(recipe.image)}"
+                 th:src="@{'/RecipeImages/' + ${#strings.arraySplit(recipe.image, ',')[0]}}"
+                 alt="Recipe Image"/>
+          </div>
           <h2 class="recipe-title" th:text="${recipe.title}"></h2>
           <p class="recipe-user" th:text="'By ' + ${recipe.user.name}"></p>
           <div class="recipe-rating" th:text="${recipe.rating}+'★'"></div>
@@ -48,7 +52,11 @@
       <div class="Recipe-list-wrapper">
         <!-- Recipe cards will be added here -->
         <div th:each="recipe : ${recipes}" class="Recipe-list">
-          <div class="Recipe-list-image"></div>
+          <div class="Recipe-list-image">
+            <img th:if="${!#strings.isEmpty(recipe.image)}"
+                 th:src="@{'/RecipeImages/' + ${#strings.arraySplit(recipe.image, ',')[0]}}"
+                 alt="Recipe Image"/>
+          </div>
           <div class="Recipe-list-info">
             <div class="Recipe-list-info-header">
               <h2 class="Recipe-list-title" th:text="${recipe.title}">Recipe Title</h2>

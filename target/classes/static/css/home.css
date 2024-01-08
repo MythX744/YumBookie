@@ -156,7 +156,8 @@ button:hover {
     display: inline-block;
     margin: 10px 0px 15px 15px;
     border-radius: 5px;
-    font-size: 0.8em;
+    font-weight: bold;
+    font-size: 20px;
 }
 .description-section {
     display: flex;

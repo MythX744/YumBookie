@@ -31,7 +31,11 @@
             <div class="Recipe-list-wrapper">
                 <!-- Recipe cards will be added here -->
                 <div th:each="recipe : ${recipes}" class="Recipe-list">
-                    <div class="Recipe-list-image"></div>
+                    <div class="Recipe-list-image">
+                        <img th:if="${!#strings.isEmpty(recipe.image)}"
+                             th:src="@{'/RecipeImages/' + ${#strings.arraySplit(recipe.image, ',')[0]}}"
+                             alt="Recipe Image"/>
+                    </div>
                     <div class="Recipe-list-info">
                         <div class="Recipe-list-info-header">
                             <h2 class="Recipe-list-title" th:text="${recipe.title}">Recipe Title</h2>

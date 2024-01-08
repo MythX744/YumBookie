@@ -114,6 +114,13 @@ button:hover {
     margin-bottom: 10px;
     border-radius: 10px;
     background-color: #555555;
+    overflow: hidden;
+}
+.recipe-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .favorite-button {
@@ -156,7 +163,8 @@ button:hover {
     display: inline-block;
     margin: 10px 0px 15px 15px;
     border-radius: 5px;
-    font-size: 0.8em;
+    font-weight: bold;
+    font-size: 20px;
 }
 .description-section {
     display: flex;
@@ -293,6 +301,14 @@ button:hover {
     border-radius: 4px;
     margin-right: 20px;
     background-color: #555555;
+    overflow: hidden;
+}
+
+.Recipe-list-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 .Recipe-list-info {
     margin: 0px 0px 0px 20px;
