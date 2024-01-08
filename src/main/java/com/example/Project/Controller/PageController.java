@@ -120,6 +120,8 @@ public class PageController {
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<Recipe> searchResults = recipeService.searchByKeyword(keyword);
         model.addAttribute("recipes", searchResults);
+        model.addAttribute("isSearchResult", true);  // Flag to indicate search results are being displayed
+        model.addAttribute("categoryName", "Search");
         return "allrecipes";
     }
 
