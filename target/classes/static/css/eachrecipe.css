@@ -5,6 +5,13 @@
     margin: 10px auto;
 }
 
+textarea:disabled {
+    background-color: #ffffff;
+}
+input:disabled {
+    background-color: #ffffff;
+}
+
 .horizontal-scroll-container {
     display: flex;
     overflow-x: auto;

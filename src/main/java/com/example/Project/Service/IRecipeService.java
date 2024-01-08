@@ -16,4 +16,6 @@ public interface IRecipeService {
     List<Recipe> findByCategoryAndUser(String category, User user);
 
     void delete(Recipe recipe);
+
+    Recipe update(Recipe recipe);
 }

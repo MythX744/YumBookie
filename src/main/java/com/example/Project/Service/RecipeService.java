@@ -5,6 +5,7 @@ import com.example.Project.Model.User;
 import com.example.Project.dao.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -71,5 +72,10 @@ public class RecipeService implements IRecipeService {
     @Override
     public void delete(Recipe recipe) {
         recipeDao.delete(recipe);
+    }
+
+    @Override
+    public Recipe update(Recipe recipe) {
+        return recipeDao.save(recipe);
     }
 }
