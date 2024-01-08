@@ -11,20 +11,22 @@
 <div id="content-wrapBase">
     <div th:replace="fragments/header :: header" > </div>
     <main id="mainBase">
-        <form th:action="@{/Recipe/loadAddRecipe}" th:object="${recipe}" method="get">
-            <div class="subheader">
-                <input class="search" type="text" placeholder="Looking for a recipe ?">
-                <button class="subheader-button" type="submit">Publish</button>
-            </div>
-        </form>
+        <div class="subheader">
+            <form action="/navigation/search" method="get" class="search-form">
+                <input class="search-input" type="text" name="keyword" placeholder="Looking for a recipe ?">
+                <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <button class="subheader-button" type="submit">Publish</button>
+        </div>
         <div class="AllRecipes-section">
             <div class="AllRecipes-header">
                 <h1>All Recipes</h1>
                 <div class="AllRecipes-filter-wrapper">
                     <select class="AllRecipes-filter">
-                        <option value="1">Most Recent</option>
-                        <option value="2">Most Popular</option>
-                        <option value="3">Most Favorited</option>
+                        <option value="1">A-Z</option>
+                        <option value="2">Z-A</option>
+                        <option value="3">Best rated</option>
+                        <option value="4">Worst rated</option>
                     </select>
                 </div>
             </div>
@@ -62,5 +64,8 @@
 </body>
 </html>
 <script>
-
+    const subheaderButton = document.querySelector('.subheader-button');
+    subheaderButton.onclick = () => {
+        location.href = '/navigation/loadAddRecipe';
+    }
 </script>

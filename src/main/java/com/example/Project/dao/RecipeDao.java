@@ -16,4 +16,6 @@ public interface RecipeDao extends JpaRepository<Recipe, Integer> {
     List<Recipe> findByCategory(String category);
 
     List<Recipe> findByCategoryAndUser(String category, User user);
+
+    List<Recipe> findByTitleContainingIgnoreCase(String keyword);
 }

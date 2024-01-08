@@ -78,4 +78,9 @@ public class RecipeService implements IRecipeService {
     public Recipe update(Recipe recipe) {
         return recipeDao.save(recipe);
     }
+
+    @Override
+    public List<Recipe> searchByKeyword(String keyword) {
+        return recipeDao.findByTitleContainingIgnoreCase(keyword);
+    }
 }

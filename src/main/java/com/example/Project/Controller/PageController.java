@@ -112,4 +112,11 @@ public class PageController {
         return "eachRecipe";
     }
 
+    @GetMapping("/search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<Recipe> searchResults = recipeService.searchByKeyword(keyword);
+        model.addAttribute("recipes", searchResults);
+        return "allrecipes";
+    }
+
 }

@@ -18,4 +18,6 @@ public interface IRecipeService {
     void delete(Recipe recipe);
 
     Recipe update(Recipe recipe);
+
+    List<Recipe> searchByKeyword(String keyword);
 }
