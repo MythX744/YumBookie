@@ -52,8 +52,9 @@
               <option value="dinner">Dinner</option>
               <!-- Add more filter options as needed -->
             </select>
-            <button id="searchbtn" type="submit">Filter</button>
+            <button class="searchbtn" type="submit">Filter</button>
           </form>
+          <a th:href="@{/Favorite/favoriteRecipes}"><button class="favorite-button" type="submit">Favorite</button></a>
         </div>
       </div>
       <div class="recipe-card-wrapper">
@@ -71,6 +72,7 @@
                   <a th:href="@{/Recipe/edit(id=${recipe.idRecipe})}"><button id="editbtn">Edit</button></a>
                   <a th:href="@{/Recipe/delete/{id}(id=${recipe.idRecipe})}"><button id="deletebtn">Delete</button></a>
                 </div>
+
               </div>
               <p th:text="'Category: ' + ${recipe.category}"></p>
               <div class="rating" th:text="${recipe.rating}+'★'"></div>
