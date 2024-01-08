@@ -20,16 +20,21 @@
         </div>
         <div class="AllRecipes-section">
             <div class="AllRecipes-header">
-                <h1>All Recipes</h1>
-                <div class="AllRecipes-filter-wrapper">
-                    <select class="AllRecipes-filter">
-                        <option value="1">A-Z</option>
-                        <option value="2">Z-A</option>
-                        <option value="3">Best rated</option>
-                        <option value="4">Worst rated</option>
-                    </select>
-                </div>
+                <h1 th:text="${categoryName} ?: 'All Recipes'">All Recipes</h1>
+                <form th:action="@{/navigation/filterRecipes}" method="get">
+                    <div class="AllRecipes-filter-wrapper">
+                        <select class="AllRecipes-filter" name="filter" onchange="this.form.submit()">
+                            <option value="1" th:selected="${selectedFilter == '1'}">A-Z</option>
+                            <option value="2" th:selected="${selectedFilter == '2'}">Z-A</option>
+                            <option value="3" th:selected="${selectedFilter == '3'}">Best rated</option>
+                            <option value="4" th:selected="${selectedFilter == '4'}">Worst rated</option>
+                        </select>
+                    </div>
+                </form>
+
+
             </div>
+
             <div class="Recipe-list-wrapper">
                 <!-- Recipe cards will be added here -->
                 <div th:each="recipe : ${recipes}" class="Recipe-list">

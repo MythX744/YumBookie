@@ -45,6 +45,7 @@ public class PageController {
     public String LoadLunch(Model theModel){
         List<Recipe> recipes = recipeService.findByCategory("Lunch");
         theModel.addAttribute("recipes", recipes);
+        theModel.addAttribute("categoryName", "Lunch");
         return "allrecipes";
     }
 
@@ -52,6 +53,7 @@ public class PageController {
     public String LoadBreakfast(Model theModel){
         List<Recipe> recipes = recipeService.findByCategory("breakfast");
         theModel.addAttribute("recipes", recipes);
+        theModel.addAttribute("categoryName", "Breakfast");
         return "allrecipes";
     }
 
@@ -59,6 +61,7 @@ public class PageController {
     public String LoadSnake(Model theModel){
         List<Recipe> recipes = recipeService.findByCategory("snack");
         theModel.addAttribute("recipes", recipes);
+        theModel.addAttribute("categoryName", "Snack");
         return "allrecipes";
     }
 
@@ -66,6 +69,7 @@ public class PageController {
     public String LoadDinner(Model theModel){
         List<Recipe> recipes = recipeService.findByCategory("dinner");
         theModel.addAttribute("recipes", recipes);
+        theModel.addAttribute("categoryName", "Dinner");
         return "allrecipes";
     }
 
@@ -118,5 +122,15 @@ public class PageController {
         model.addAttribute("recipes", searchResults);
         return "allrecipes";
     }
+
+    @GetMapping("/filterRecipes")
+    public String filterRecipes(@RequestParam("filter") String filter, Model model) {
+        List<Recipe> filteredRecipes = recipeService.getFilteredRecipes(filter);
+        model.addAttribute("recipes", filteredRecipes);
+        model.addAttribute("selectedFilter", filter); // Add the selected filter value to the model
+        return "allRecipes";
+    }
+
+
 
 }

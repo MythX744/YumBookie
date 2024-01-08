@@ -44,13 +44,17 @@
     <div class="AllRecipes-section">
       <div class="AllRecipes-header">
         <h1>All Recipes</h1>
-        <div class="AllRecipes-filter-wrapper">
-        <select class="AllRecipes-filter">
-          <option value="1">Most Recent</option>
-          <option value="2">Most Popular</option>
-          <option value="3">Most Favorited</option>
-        </select>
-        </div>
+        <form th:action="@{/navigation/filterRecipes}" method="get">
+          <div class="AllRecipes-filter-wrapper">
+            <select class="AllRecipes-filter" name="filter" onchange="this.form.submit()">
+              <option value="1">A-Z</option>
+              <option value="2">Z-A</option>
+              <option value="3">Best rated</option>
+              <option value="4">Worst rated</option>
+            </select>
+          </div>
+        </form>
+
       </div>
       <div class="Recipe-list-wrapper">
         <!-- Recipe cards will be added here -->
@@ -92,3 +96,4 @@
         location.href = '/navigation/loadAddRecipe';
     }
 </script>
+
