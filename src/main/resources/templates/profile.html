@@ -72,6 +72,7 @@
                   <a th:href="@{/Recipe/edit(id=${recipe.idRecipe})}"><button id="editbtn">Edit</button></a>
                   <a th:href="@{/Recipe/delete/{id}(id=${recipe.idRecipe})}"><button id="deletebtn">Delete</button></a>
                 </div>
+
               </div>
               <p th:text="'Category: ' + ${recipe.category}"></p>
               <div class="rating">
