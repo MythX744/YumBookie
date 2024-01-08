@@ -68,7 +68,7 @@
               <div id="firstline">
                 <h2 th:text="${recipe.title}">ddd</h2>
                 <div id="btnss">
-                  <a th:href="@{/Recipe/edit/{id}(id=${recipe.idRecipe})}"><button id="editbtn">Edit</button></a>
+                  <a th:href="@{/Recipe/edit(id=${recipe.idRecipe})}"><button id="editbtn">Edit</button></a>
                   <a th:href="@{/Recipe/delete/{id}(id=${recipe.idRecipe})}"><button id="deletebtn">Delete</button></a>
                 </div>
               </div>
