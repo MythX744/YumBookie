@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface RecipeDao extends JpaRepository<Recipe, Integer> {
-
     @Query("SELECT r FROM Recipe r LEFT JOIN r.comments c GROUP BY r ORDER BY SUM(c.ratings) DESC")
     List<Recipe> findTrendingRecipes();
-
     List<Recipe> findByUser(User user);
     List<Recipe> findByCategory(String category);
-
     List<Recipe> findByCategoryAndUser(String category, User user);
-
     List<Recipe> findByTitleContainingIgnoreCase(String keyword);
+    List<Recipe> findAllByOrderByTitleAsc();
+    List<Recipe> findAllByOrderByTitleDesc();
+    List<Recipe> findAllByOrderByRatingDesc();
+    List<Recipe> findAllByOrderByRatingAsc();
 }

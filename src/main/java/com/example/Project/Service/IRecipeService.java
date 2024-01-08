@@ -20,4 +20,6 @@ public interface IRecipeService {
     Recipe update(Recipe recipe);
 
     List<Recipe> searchByKeyword(String keyword);
+
+    List<Recipe> getFilteredRecipes(String filter);
 }

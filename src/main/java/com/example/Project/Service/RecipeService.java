@@ -83,4 +83,19 @@ public class RecipeService implements IRecipeService {
     public List<Recipe> searchByKeyword(String keyword) {
         return recipeDao.findByTitleContainingIgnoreCase(keyword);
     }
+
+    public List<Recipe> getFilteredRecipes(String filter) {
+        switch (filter) {
+            case "1":
+                return recipeDao.findAllByOrderByTitleAsc();
+            case "2":
+                return recipeDao.findAllByOrderByTitleDesc();
+            case "3":
+                return recipeDao.findAllByOrderByRatingDesc();
+            case "4":
+                return recipeDao.findAllByOrderByRatingAsc();
+            default:
+                return recipeDao.findAll();
+        }
+    }
 }
