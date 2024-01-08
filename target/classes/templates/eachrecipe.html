@@ -18,7 +18,6 @@
                 <div class="gallery-wrapper">
                     <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
                     <div class="horizontal-scroll-container">
-                        <!-- Dynamically load images here -->
                         <div th:if="${!#strings.isEmpty(recipe.image)}" class="image-wrapper" id="image-scroll-container" >
                             <div th:each="filename : ${#strings.arraySplit(recipe.image, ',')}">
                                 <img th:src="@{'/RecipeImages/' + ${filename}}" class="gallery-image" />
@@ -26,7 +25,7 @@
                         </div>
                     </div>
                     <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
-                </div><!-- File input for uploading images -->
+                </div>
             </div>
             <div class="container">
                 <div class="recipe-details-container">
@@ -69,7 +68,13 @@
             </div>
             <div id="comments">
                 <h1 id="gg">Comments:</h1>
-                <button type="submit" id="pbtn">Add comment</button>
+                <button type="button" id="pbtn">Add comment</button>
+                <form action="" method="post">
+                    <div id="commentField">
+                        <textarea id="commentText" placeholder="Enter your comment"></textarea>
+                        <button type="button" id="idsubmit">Submit</button>
+                    </div>
+                </form>
                 <div class="cooking-container1">
                     <p><b>Username</b></p>
                     <p id="commentt">Comment text </p>
@@ -80,6 +85,36 @@
     </div>
 <script th:src="@{/js/header.js}"></script>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var pbtn = document.getElementById('pbtn');
+        var commentField = document.getElementById('commentField');
+        var submitComment = document.getElementById('submitComment');
+        var commentt = document.getElementById('commentt');
+
+        pbtn.addEventListener('click', function() {
+            commentField.style.display = 'block';
+        });
+
+        submitComment.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            var commentText = document.getElementById('commentText').value;
+
+            // Display the comment in the designated area
+            commentt.textContent = commentText;
+
+            // Clear the comment field after submission
+            document.getElementById('commentText').value = '';
+
+            // Hide the comment field after submission
+            commentField.style.display = 'none';
+        });
+    });
+
+</script>
+
 </html>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -100,3 +135,4 @@
         });
     });
 </script>
+
