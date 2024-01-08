@@ -39,7 +39,7 @@
     <!-- Recipe List Content -->
     <div class="container">
       <div class="fixed-header">
-        <h1 style="font-size: 35px;">All Recipies:</h1>
+        <h1 style="font-size: 35px;" th:text="${viewMode == 'favorites'} ? 'All My Favorites' : 'All Recipes'"></h1>
         <p style=" margin-left: 20px; font-size: 20px" th:text="${#sets.size(recipes)} + ' recipes published'"></p>
         <div class="controls">
           <form method="get" th:action="@{/navigation/filter}">

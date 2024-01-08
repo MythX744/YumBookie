@@ -33,6 +33,7 @@ public class FavoriteController {
         List<Recipe> favoriteRecipes = favoriteService.findFavoriteRecipesByUser(user);
         model.addAttribute("user", user);
         model.addAttribute("recipes", favoriteRecipes);
+        model.addAttribute("viewMode", "favorites");
         return "profile";
     }
     @GetMapping("/toggleFavorite")
