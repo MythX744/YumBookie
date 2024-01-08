@@ -1,6 +1,8 @@
 package com.example.Project.Controller;
+import com.example.Project.Model.Comment;
 import com.example.Project.Model.Recipe;
 import com.example.Project.Model.User;
+import com.example.Project.Service.ICommentService;
 import com.example.Project.Service.IRecipeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,13 @@ import java.util.Set;
 public class PageController {
 
     private IRecipeService recipeService;
+    private ICommentService commentService;
     @Autowired
-    public PageController(IRecipeService recipeService){
+    public PageController(IRecipeService recipeService, ICommentService commentService){
         this.recipeService=recipeService;
+        this.commentService=commentService;
     }
+
 
     @GetMapping("/home")
     public String LoadHome(Model theModel){
@@ -101,9 +106,10 @@ public class PageController {
     @GetMapping("/loadEachRecipe")
     public String loadEachRecipe(@RequestParam("id") int id, Model model){
         Recipe recipe = recipeService.findById(id);
+        List<Comment> comments = commentService.findByRecipe(recipe);
+        model.addAttribute("comments", comments);
         model.addAttribute("recipe", recipe);
         return "eachRecipe";
     }
-
 
 }

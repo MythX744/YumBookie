@@ -2,6 +2,7 @@ package com.example.Project.Service;
 
 import com.example.Project.Model.Comment;
 import com.example.Project.Model.Favorite;
+import com.example.Project.Model.Recipe;
 import com.example.Project.dao.CommentDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class CommentService implements ICommentService{
     public CommentService(CommentDao commentDao) {
         this.commentDao = commentDao;
     }
+
     @Override
     public List<Comment> findAll() {
         return commentDao.findAll();
@@ -44,5 +46,10 @@ public class CommentService implements ICommentService{
     @Override
     public void deleteById(int id) {
         commentDao.deleteById(id);
+    }
+
+    @Override
+    public List<Comment> findByRecipe(Recipe recipe) {
+        return commentDao.findByRecipe(recipe);
     }
 }
