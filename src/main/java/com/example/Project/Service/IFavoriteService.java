@@ -12,4 +12,5 @@ public interface IFavoriteService {
     public Favorite save(Favorite favorite);
     public void deleteById(int id);
     public List<Recipe> findFavoriteRecipesByUser(User user);
+    boolean toggleFavoriteStatus(Recipe recipe, User user);
 }

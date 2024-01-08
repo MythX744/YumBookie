@@ -4,14 +4,12 @@ import com.example.Project.Model.Favorite;
 import com.example.Project.Model.Recipe;
 import com.example.Project.Model.User;
 import com.example.Project.Service.FavoriteService;
+import com.example.Project.Service.RecipeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,10 +19,12 @@ import java.util.List;
 public class FavoriteController {
 
     private FavoriteService favoriteService;
+    private RecipeService recipeService;
 
     @Autowired
-    public FavoriteController(FavoriteService favoriteService) {
+    public FavoriteController(FavoriteService favoriteService, RecipeService recipeService) {
         this.favoriteService = favoriteService;
+        this.recipeService = recipeService;
     }
 
     @GetMapping("/favoriteRecipes")
@@ -34,6 +34,13 @@ public class FavoriteController {
         model.addAttribute("user", user);
         model.addAttribute("recipes", favoriteRecipes);
         return "profile";
+    }
+    @GetMapping("/toggleFavorite")
+    public String toggleFavoriteStatus(@RequestParam("recipeId") int recipeId, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Recipe recipe = recipeService.findById(recipeId);
+        favoriteService.toggleFavoriteStatus(recipe, user);
+        return "redirect:/navigation/home";
     }
 
 

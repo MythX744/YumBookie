@@ -60,5 +60,18 @@ public class FavoriteService implements IFavoriteService{
         return recipes;
     }
 
+    @Override
+    public boolean toggleFavoriteStatus(Recipe recipe, User user) {
+        if (favoriteDao.existsByUserAndRecipe(user, recipe)) {
+            favoriteDao.deleteFavoriteByRecipeAndUser(recipe, user);
+            return false;
+        } else {
+            Favorite favorite = new Favorite();
+            favorite.setRecipe(recipe);
+            favorite.setUser(user);
+            favoriteDao.save(favorite);
+            return true;
+        }
+    }
 
 }

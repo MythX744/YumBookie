@@ -67,7 +67,7 @@
           <div class="Recipe-list-info">
             <div class="Recipe-list-info-header">
               <h2 class="Recipe-list-title" th:text="${recipe.title}">Recipe Title</h2>
-              <button class="Recipe-list-favorite">♥</button>
+              <a th:href="@{/Favorite/toggleFavorite(recipeId=${recipe.idRecipe})}"><button class="Recipe-list-favorite">♥</button></a>
             </div>
             <a th:href="@{/navigation/loadEachRecipe(id=${recipe.idRecipe})}" class="recipe-list-link">
             <p class="Recipe-list-user" th:text="'By ' + ${recipe.user.name}">By User</p>
