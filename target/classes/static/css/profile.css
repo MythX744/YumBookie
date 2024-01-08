@@ -6,7 +6,9 @@ body, html {
     height: 100%;
     box-sizing: border-box;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 #home{
     border: none;
     background: none;
