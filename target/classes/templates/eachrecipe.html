@@ -70,26 +70,37 @@
             <div id="comments">
                 <h1 id="gg">Comments:</h1>
                 <button type="button" id="pbtn">Add comment</button>
-                <form action="" method="post">
+                <form th:action="@{/Recipe/addComment(recipeId=${recipe.idRecipe})}" method="post">
                     <div id="commentField">
-                        <textarea id="commentText" placeholder="Enter your comment"></textarea>
-                        <button type="button" id="idsubmit">Submit</button>
-                    </div>
-                </form>
-                <div class="cooking-container1">
-                    <div id="hhhh" style="display: flex; align-items: center;">
-                        <p><b>Username</b></p>
-                        <div class="rating">
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rating" value="5"><label for="star5"></label>
-                                <input type="radio" id="star4" name="rating" value="4"><label for="star4"></label>
-                                <input type="radio" id="star3" name="rating" value="3"><label for="star3"></label>
-                                <input type="radio" id="star2" name="rating" value="2"><label for="star2"></label>
-                                <input type="radio" id="star1" name="rating" value="1"><label for="star1"></label>
+                        <textarea id="commentText" name="comment" placeholder="Enter your comment" required></textarea>
+                        <div>
+                            <label>Rating:</label>
+                            <div class="star-rating">
+                                <span class="star" onclick="setRating(1)">&#9733;</span>
+                                <span class="star" onclick="setRating(2)">&#9733;</span>
+                                <span class="star" onclick="setRating(3)">&#9733;</span>
+                                <span class="star" onclick="setRating(4)">&#9733;</span>
+                                <span class="star" onclick="setRating(5)">&#9733;</span>
+                                <input type="hidden" id="rating" name="rating" value="0">
                             </div>
                         </div>
+                        <button type="submit" id="idsubmit">Submit</button>
                     </div>
-                    <p id="commentt">Comment text </p>
+                </form>
+
+
+                <div class="cooking-container1">
+                    <div th:each="commentText : ${comments}" class="cooking-container1">
+                        <div id="hhhh" style="display: flex; align-items: center;">
+                            <p><b th:text="${commentText.user.name}">Username</b></p>
+                            <div class="rating" th:each="i : ${#numbers.sequence(1, 5)}">
+                                <span th:class="${i <= commentText.ratings} ? 'filled-star' : 'empty-star'">&#9733;</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p id="commentt" th:text="${commentText.comment}">Comment text</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -147,4 +158,14 @@
         });
     });
 </script>
+<script>
+    function setRating(rating) {
+        var stars = document.querySelectorAll('.star-rating .star');
+        document.getElementById('rating').value = rating; // Set the rating in the hidden input
+        stars.forEach((star, index) => {
+            star.classList.toggle('selected', index < rating);
+        });
+    }
+</script>
+
 
