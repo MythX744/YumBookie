@@ -60,7 +60,9 @@
         <div th:each="recipe : ${recipes}" id="recipe-card-container">
           <div class="recipe-card" >
             <div class="image-placeholder">
-              <img src="" alt="Recipe image" />
+              <img th:if="${!#strings.isEmpty(recipe.image)}"
+                   th:src="@{'/RecipeImages/' + ${#strings.arraySplit(recipe.image, ',')[0]}}"
+                   alt="Recipe Image"/>
             </div>
             <div class="recipe-info">
               <div id="firstline">

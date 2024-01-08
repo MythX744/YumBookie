@@ -12,7 +12,13 @@
     align-items: center;
     justify-content: center;
 }
-
+.image-wrapper {
+    display:flex;
+    overflow-x: auto;
+}
+.image-wrapper::-webkit-scrollbar {
+    display: none;
+}
 #scroll-left, #scroll-right {
     position: absolute;
     top: 50%;
