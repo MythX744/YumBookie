@@ -29,9 +29,12 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    private IRecipeService recipeService;
+
     @Autowired
-    public UserController(IUserService userService) {
+    public UserController(IUserService userService, IRecipeService recipeService) {
         this.userService = userService;
+        this.recipeService = recipeService;
     }
 
     @PostMapping("/updateUser/{id}")
@@ -74,12 +77,18 @@ public class UserController {
         String password = user.getPassword();
         if ((user = userService.validateUser(email, password)) != null) {
             session.setAttribute("user", user);
-            //System.out.println(user);
+            // Trigger rating updates for all recipes
+            updateAllRecipeRatings();
             return "redirect:/navigation/home";
         } else {
             System.out.println("Invalid credentials");
             return "redirect:/User/loadLogin";
         }
+    }
+
+    private void updateAllRecipeRatings() {
+        List<Recipe> allRecipes = recipeService.findAll();
+        allRecipes.forEach(recipe -> recipeService.updateRecipeAverageRating(recipe.getIdRecipe()));
     }
 
     @GetMapping("/loadSignup")

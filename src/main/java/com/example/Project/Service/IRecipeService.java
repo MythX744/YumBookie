@@ -22,4 +22,6 @@ public interface IRecipeService {
     List<Recipe> searchByKeyword(String keyword);
 
     List<Recipe> getFilteredRecipes(String filter);
+
+    void updateRecipeAverageRating(int recipeId);
 }

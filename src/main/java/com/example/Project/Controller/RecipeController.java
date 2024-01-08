@@ -134,6 +134,7 @@ public class RecipeController {
             newComment.setRatings(rating);
 
             commentService.save(newComment);
+            recipeService.updateRecipeAverageRating(recipeId);
             redirectAttributes.addFlashAttribute("successMessage", "Comment added successfully!");
         } else {
             redirectAttributes.addFlashAttribute("errorMessage", "Error adding comment.");

@@ -3,12 +3,15 @@ package com.example.Project.Service;
 import com.example.Project.Model.Recipe;
 import com.example.Project.Model.User;
 import com.example.Project.dao.RecipeDao;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -97,5 +100,20 @@ public class RecipeService implements IRecipeService {
             default:
                 return recipeDao.findAll();
         }
+    }
+
+    public void updateRecipeAverageRating(int recipeId) {
+        Optional<Double> averageRatingOpt = recipeDao.findAverageRatingByRecipeId(recipeId);
+        Recipe recipe = recipeDao.findById(recipeId)
+                .orElseThrow(() -> new EntityNotFoundException("Recipe not found"));
+
+        averageRatingOpt.ifPresent(averageRating -> {
+            double roundedAverage = BigDecimal.valueOf(averageRating)
+                    .setScale(1, RoundingMode.HALF_UP)
+                    .doubleValue();
+            recipe.setRating(roundedAverage);
+        });
+
+        recipeDao.save(recipe);
     }
 }
