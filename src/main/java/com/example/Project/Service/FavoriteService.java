@@ -2,12 +2,16 @@ package com.example.Project.Service;
 
 import com.example.Project.Model.Favorite;
 import com.example.Project.Model.Recipe;
+import com.example.Project.Model.User;
 import com.example.Project.dao.FavoriteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class FavoriteService implements IFavoriteService{
@@ -45,4 +49,12 @@ public class FavoriteService implements IFavoriteService{
     public void deleteById(int id) {
         favoriteDao.deleteById(id);
     }
+
+    @Override
+    public List<Recipe> findFavoriteRecipesByUser(User user) {
+        Set<Favorite> favorites = (Set<Favorite>) favoriteDao.findByUser(user);
+        return new ArrayList<>(favorites.stream().map(Favorite::getRecipe).collect(Collectors.toList()));
+    }
+
+
 }

@@ -1,7 +1,9 @@
 package com.example.Project.Controller;
 
+import com.example.Project.Model.Comment;
 import com.example.Project.Model.Recipe;
 import com.example.Project.Model.User;
+import com.example.Project.Service.ICommentService;
 import com.example.Project.Service.IRecipeService;
 import com.example.Project.Service.IUserService;
 import com.example.Project.dao.RecipeDao;
@@ -31,12 +33,12 @@ import java.util.List;
 public class RecipeController {
     private IRecipeService recipeService;
     private IUserService userService;
+    private ICommentService commentService;
     @Autowired
-    public RecipeController(IRecipeService recipeService){
-        this.recipeService=recipeService;
-    }
-    public RecipeController(IUserService userService){
-        this.userService=userService;
+    public RecipeController(IRecipeService recipeService, IUserService userService, ICommentService commentService) {
+        this.recipeService = recipeService;
+        this.userService = userService;
+        this.commentService = commentService;
     }
 
     @PostMapping("/addRecipe")
@@ -159,6 +161,32 @@ public class RecipeController {
         redirectAttributes.addFlashAttribute("successMessage", "Recipe updated successfully!");
         return "redirect:/navigation/home"; // Redirect to a success page
     }
+
+    @PostMapping("/addComment")
+    public String addComment(@RequestParam("recipeId") int recipeId,
+                             @RequestParam("comment") String commentText,
+                             @RequestParam("rating") int rating,
+                             HttpSession session,
+                             RedirectAttributes redirectAttributes) {
+        User user = (User) session.getAttribute("user");
+        Recipe recipe = recipeService.findById(recipeId);
+
+        if (user != null && recipe != null) {
+            Comment newComment = new Comment();
+            newComment.setUser(user);
+            newComment.setRecipe(recipe);
+            newComment.setComment(commentText);
+            newComment.setRatings(rating);
+
+            commentService.save(newComment);
+            redirectAttributes.addFlashAttribute("successMessage", "Comment added successfully!");
+        } else {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error adding comment.");
+        }
+
+        return "redirect:/navigation/loadEachRecipe?id=" + recipeId;
+    }
+
 
 
 

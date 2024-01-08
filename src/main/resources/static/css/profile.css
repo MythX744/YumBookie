@@ -149,10 +149,10 @@ h1 {
     width: 100px;
 }
 
-#searchbtn {
+.searchbtn {
     padding: 10px 20px;
     border: none;
-    width: 100px;
+    width: auto;
     border-radius: 4px;
     height: 45px;
     font-size: 16px;

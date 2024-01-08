@@ -417,7 +417,7 @@ h2 {
 .rating {
     display: inline-block;
     direction: rtl;
-    margin-left: 243px;
+    margin-left: 5px;
     margin-top: -5px;
 }
 
@@ -447,4 +447,22 @@ h2 {
 
 #hhh{
     display: flex;
+}
+
+.filled-star {
+    color: gold;
+}
+
+.empty-star {
+    color: lightgray;
+}
+
+.star-rating .star {
+    font-size: 24px;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.star-rating .star.selected {
+    color: gold;
 }

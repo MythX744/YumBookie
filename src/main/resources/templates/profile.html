@@ -52,8 +52,9 @@
               <option value="dinner">Dinner</option>
               <!-- Add more filter options as needed -->
             </select>
-            <button id="searchbtn" type="submit">Filter</button>
+            <button class="searchbtn" type="submit">Filter</button>
           </form>
+            <a th:href="@{/Favorite/favoriteRecipes}"><button class="searchbtn" type="submit">Favorite</button></a>
         </div>
       </div>
       <div class="recipe-card-wrapper">
