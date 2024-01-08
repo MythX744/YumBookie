@@ -93,4 +93,73 @@ public class RecipeController {
         return null;
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteRecipe(@PathVariable("id") int id) {
+        Recipe recipe = recipeService.findById(id);
+        recipeService.delete(recipe);
+        return "redirect:/navigation/loadProfile";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editRecipe(@PathVariable("id") int id, Model model) {
+        Recipe recipe = recipeService.findById(id);
+        model.addAttribute("recipe", recipe);
+        return "modifyRecipe";
+    }
+
+    @PostMapping("/modifyRecipe")
+    public String modifyRecipe(@ModelAttribute Recipe modifiedRecipe, @RequestParam("images") MultipartFile[] files, @RequestParam("recipeId") int recipeId, RedirectAttributes redirectAttributes, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        Recipe existingRecipe = recipeService.findById(recipeId); // Retrieve the existing recipe
+
+        // Update the existing recipe with new data from the form
+        existingRecipe.setTitle(modifiedRecipe.getTitle());
+        existingRecipe.setDescription(modifiedRecipe.getDescription());
+        existingRecipe.setCategory(modifiedRecipe.getCategory());
+        existingRecipe.setIngredients(modifiedRecipe.getIngredients());
+        existingRecipe.setPreparation(modifiedRecipe.getPreparation());
+        existingRecipe.setCooking(modifiedRecipe.getCooking());
+        existingRecipe.setServing(modifiedRecipe.getServing());
+        existingRecipe.setComments(modifiedRecipe.getComments());
+        existingRecipe.setRating(modifiedRecipe.getRating());
+        existingRecipe.setFavorites(modifiedRecipe.getFavorites());
+        // ... Update other fields as necessary
+
+        List<String> fileNames = new ArrayList<>();
+
+        // Process each image file
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                try {
+                    String fileName = saveImageFile(file); // Save the image and get the file name
+                    fileNames.add(fileName); // Add file name to the list
+                } catch (IOException e) {
+                    redirectAttributes.addFlashAttribute("errorMessage", "Error saving image: " + file.getOriginalFilename());
+                    return "redirect:/navigation/editRecipe"; // Redirect back to the edit form page
+                }
+            }
+        }
+
+        // Only update the image if new images have been uploaded
+        if (!fileNames.isEmpty()) {
+            String imageFilesConcatenated = String.join(",", fileNames); // Concatenate with comma delimiter
+            existingRecipe.setImage(imageFilesConcatenated);
+        }
+
+        existingRecipe.setUser(user); // Re-associate the user
+
+        // Save the updated recipe object
+        try {
+            recipeService.save(existingRecipe);
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error updating recipe");
+            return "redirect:/navigation/editRecipe"; // Redirect back to the edit form page
+        }
+
+        redirectAttributes.addFlashAttribute("successMessage", "Recipe updated successfully!");
+        return "redirect:/navigation/home"; // Redirect to a success page
+    }
+
+
+
 }

@@ -42,11 +42,14 @@
         <h1 style="font-size: 35px;">All Recipies:</h1>
         <p style=" margin-left: 20px; font-size: 20px" th:text="${#sets.size(recipes)} + ' recipes published'"></p>
         <div class="controls">
-          <form method="post"> <!--th:action="@{/Recipe/filtre}" -->
+          <form method="get" th:action="@{/navigation/filter}">
             <select name="filter" id="filter">
               <option disabled selected value="">Filtering Options</option>
-              <option value="AZ">A-Z</option>
-              <option value="ZA">Z-A</option>
+              <option value="all">All</option>
+              <option value="lunch">Lunch</option>
+              <option value="breakfast">BreakFast</option>
+              <option value="snack">Snack</option>
+              <option value="dinner">Dinner</option>
               <!-- Add more filter options as needed -->
             </select>
             <button id="searchbtn" type="submit">Filter</button>
@@ -63,8 +66,8 @@
               <div id="firstline">
                 <h2 th:text="${recipe.title}">ddd</h2>
                 <div id="btnss">
-                  <button id="editbtn">Edit</button>
-                  <button id="deletebtn">Delete</button>
+                  <a th:href="@{/Recipe/edit/{id}(id=${recipe.idRecipe})}"><button id="editbtn">Edit</button></a>
+                  <a th:href="@{/Recipe/delete/{id}(id=${recipe.idRecipe})}"><button id="deletebtn">Delete</button></a>
                 </div>
               </div>
               <p th:text="'Category: ' + ${recipe.category}"></p>

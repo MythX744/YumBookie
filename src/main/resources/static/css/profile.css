@@ -258,6 +258,9 @@ select {
     padding: auto 10px;
 }
 
+#btnss a{
+    text-decoration: none;
+}
 #editbtn{
     background: #FF8C61;
     color: white;

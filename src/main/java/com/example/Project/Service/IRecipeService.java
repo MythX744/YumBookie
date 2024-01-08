@@ -13,5 +13,7 @@ public interface IRecipeService {
     List<Recipe> findByUser(User user);
     List<Recipe> findByCategory(String category);
     List<Recipe> getTrendingRecipes();
+    List<Recipe> findByCategoryAndUser(String category, User user);
 
+    void delete(Recipe recipe);
 }

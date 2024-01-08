@@ -73,6 +73,19 @@ public class PageController {
         return "profile";
     }
 
+    @GetMapping("/filter")
+    public String filter(Model model, @RequestParam("filter") String category, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if(category.equals("all")){
+            return "redirect:/navigation/loadProfile";
+        }else{
+            List<Recipe> recipes = recipeService.findByCategoryAndUser(category, user);
+            model.addAttribute("user", user);
+            model.addAttribute("recipes", recipes);
+            return "profile";
+        }
+    }
+
     @GetMapping("/loadAllRecipes")
     public String loadAllRecipes(Model model){
         List<Recipe> recipes = recipeService.findAll();

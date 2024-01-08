@@ -59,7 +59,17 @@ public class RecipeService implements IRecipeService {
     }
 
     @Override
+    public List<Recipe> findByCategoryAndUser(String category, User user) {
+        return recipeDao.findByCategoryAndUser(category, user);
+    }
+
+    @Override
     public List<Recipe> getTrendingRecipes(){
         return recipeDao.findTrendingRecipes();
+    }
+
+    @Override
+    public void delete(Recipe recipe) {
+        recipeDao.delete(recipe);
     }
 }

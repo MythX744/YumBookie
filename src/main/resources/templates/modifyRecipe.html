@@ -29,7 +29,7 @@
 
             <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
         </div>
-        <form th:action="@{/Recipe/addRecipe}" th:object="${recipe}" method="post" enctype="multipart/form-data">
+        <form th:action="@{/Recipe/modifyRecipe}" th:object="${recipe}" method="post" enctype="multipart/form-data">
             <div class="upload-container">
                 <div id="titlediv" style="text-align: left;">
                     <table class="info-table">
