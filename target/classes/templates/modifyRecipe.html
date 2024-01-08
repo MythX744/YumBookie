@@ -2,11 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>add recipe</title>
-</head>
-<body>
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload Interface</title>
     <link rel="stylesheet" th:href="@{/css/modifyrecipe.css}" />
@@ -14,21 +9,25 @@
     <!-- Add Font Awesome for modern icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
-
 <body>
 <div id="content-wrapBase">
     <div th:replace="fragments/header :: header" > </div>
     <main id="mainBase">
         <div class="gallery-wrapper">
             <button id="scroll-left" aria-label="Scroll left">&#10094;</button>
-
-            <div class="horizontal-scroll-container" id="image-scroll-container">
-                <!-- Images will be dynamically inserted here -->
+            <div class="horizontal-scroll-container">
+                <!-- Dynamically load images here -->
+                <div th:if="${!#strings.isEmpty(recipe.image)}" class="image-wrapper" id="image-scroll-container" >
+                    <div th:each="filename : ${#strings.arraySplit(recipe.image, ',')}">
+                        <img th:src="@{'/RecipeImages/' + ${filename}}" class="gallery-image" />
+                    </div>
+                </div>
             </div>
-
             <button id="scroll-right" aria-label="Scroll right">&#10095;</button>
         </div>
         <form th:action="@{/Recipe/modifyRecipe}" th:object="${recipe}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{image}">
+            <input type="hidden" th:field="*{idRecipe}">
             <div class="upload-container">
                 <div id="titlediv" style="text-align: left;">
                     <table class="info-table">
@@ -101,75 +100,25 @@
     </main>
     <div th:replace="fragments/footer :: footer" > </div>
 </div>
+<script th:src="@{/js/header.js}"></script>
 </body>
+</html>
 <script>
-    function handleKeyPress(e, listId) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const list = document.getElementById(listId);
-            const newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.placeholder = listId === 'ingredients-list' ? 'Add an ingredient' : 'Add a cooking step';
-            newInput.onkeypress = function(event) { handleKeyPress(event, listId); };
-            const newLi = document.createElement('li');
-            newLi.appendChild(newInput);
-            list.appendChild(newLi);
-            newInput.focus();
-        }
-    }
-</script>
-<script>
-    function updateFileList() {
-        const input = document.getElementById('file-input');
-        const tableBody = document.getElementById('files-table').querySelector('tbody');
-        tableBody.innerHTML = ''; // Clear the table
+    document.addEventListener('DOMContentLoaded', function () {
+        const scrollLeftButton = document.getElementById('scroll-left');
+        const scrollRightButton = document.getElementById('scroll-right');
+        const imageContainer = document.getElementById('image-scroll-container');
 
-        // Limit the files to a maximum of 6
-        const files = Array.from(input.files).slice(0, 6);
-        input.files = createFileList(files);
-
-        // Create table rows and cells for files
-        files.forEach((file, index) => {
-            const cellIndex = index % 3;
-            const rowIndex = Math.floor(index / 3);
-            let row = tableBody.rows[rowIndex];
-            if (!row) {
-                row = tableBody.insertRow();
+        scrollLeftButton.addEventListener('click', function() {
+            if (imageContainer.scrollLeft > 0) {
+                imageContainer.scrollBy({ left: -imageContainer.offsetWidth / 2, behavior: 'smooth' });
             }
-
-            const cell = row.insertCell(cellIndex);
-            cell.textContent = file.name;
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete-button';
-            deleteButton.onclick = function() { deleteFile(index); };
-            cell.appendChild(deleteButton);
         });
-    }
-
-    function deleteFile(index) {
-        const input = document.getElementById('file-input');
-        const files = Array.from(input.files);
-
-        files.splice(index, 1); // Remove the file from the array
-
-        // Update the file list in the file input
-        input.files = createFileList(files);
-
-        // Update the display
-        updateFileList();
-    }
-
-    function createFileList(files) {
-        const dataTransfer = new DataTransfer();
-        files.forEach(file => {
-            dataTransfer.items.add(file);
+        scrollRightButton.addEventListener('click', function() {
+            const maxScrollLeft = imageContainer.scrollWidth - imageContainer.clientWidth;
+            if (imageContainer.scrollLeft < maxScrollLeft) {
+                imageContainer.scrollBy({ left: imageContainer.offsetWidth / 2, behavior: 'smooth' });
+            }
         });
-        return dataTransfer.files;
-    }
-    document.addEventListener('DOMContentLoaded', updateFileList);
+    });
 </script>
-</html>
-
-</body>
-</html>

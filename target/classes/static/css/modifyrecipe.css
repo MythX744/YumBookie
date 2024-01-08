@@ -11,13 +11,7 @@ body, html {
     max-width: 960px; /* Maximum width of the gallery */
     margin: 150px auto;
 }
-.image-wrapper {
-    display:flex;
-    overflow-x: auto;
-}
-.image-wrapper::-webkit-scrollbar {
-    display: none;
-}
+
 .horizontal-scroll-container {
     display: flex;
     overflow-x: auto;
