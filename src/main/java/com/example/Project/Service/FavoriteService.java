@@ -52,8 +52,12 @@ public class FavoriteService implements IFavoriteService{
 
     @Override
     public List<Recipe> findFavoriteRecipesByUser(User user) {
-        Set<Favorite> favorites = (Set<Favorite>) favoriteDao.findByUser(user);
-        return new ArrayList<>(favorites.stream().map(Favorite::getRecipe).collect(Collectors.toList()));
+        List<Favorite> favorites = favoriteDao.findByUser(user);
+        List<Recipe> recipes = new ArrayList<>();
+        for (Favorite favorite : favorites) {
+            recipes.add(favorite.getRecipe());
+        }
+        return recipes;
     }
 
 

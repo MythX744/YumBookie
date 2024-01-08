@@ -12,7 +12,10 @@
   <div th:replace="fragments/header :: header" > </div>
   <main id="mainBase">
     <div class="subheader">
-      <input class="search" type="text" placeholder="Looking for a recipe ?">
+      <form action="/navigation/search" method="get" class="search-form">
+        <input class="search-input" type="text" name="keyword" placeholder="Looking for a recipe ?">
+        <button class="search-button" type="submit"><i class="fas fa-search"></i></button>
+      </form>
       <button class="subheader-button" type="submit">Publish</button>
     </div>
     <h1>Trending</h1>

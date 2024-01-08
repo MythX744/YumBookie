@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -25,14 +26,15 @@ public class FavoriteController {
     public FavoriteController(FavoriteService favoriteService) {
         this.favoriteService = favoriteService;
     }
+
     @GetMapping("/favoriteRecipes")
     public String viewFavorites(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user != null) {
-            List<Recipe> favoriteRecipes = favoriteService.findFavoriteRecipesByUser(user);
-            model.addAttribute("favoriteRecipes", favoriteRecipes);
-        }
+        List<Recipe> favoriteRecipes = favoriteService.findFavoriteRecipesByUser(user);
+        model.addAttribute("user", user);
+        model.addAttribute("recipes", favoriteRecipes);
         return "profile";
     }
+
 
 }
