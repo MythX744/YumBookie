@@ -11,6 +11,7 @@ textarea:disabled {
 input:disabled {
     background-color: #ffffff;
 }
+
 .horizontal-scroll-container {
     display: flex;
     overflow-x: auto;
