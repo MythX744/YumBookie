@@ -1,6 +1,6 @@
 ## Project Description
 This project involves creating a recipe website with a diverse collection of recipes across various
-cuisines, dietary preferences, and skill levels using Spring Boot. Users can effortlessly search, filter, and explore
+cuisines, dietary preferences, and skill levels using the Spring Boot framework. Users can effortlessly search, filter, and explore
 recipes tailored to their preferences. The platform allows registered users to create personalized
 profiles, enabling them to save favorites, share their recipes, and engage with the cooking
 community. A visually appealing and user-friendly interface enhances the browsing experience,
